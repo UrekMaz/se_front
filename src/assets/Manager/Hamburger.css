@@ -1,0 +1,48 @@
+.hamburger-button {
+    background: none;
+    border: none;
+    color: #000000;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.main-nav {
+    border-radius: 16px;
+    background: linear-gradient(180deg, #1e2420 19%, #0d3f20 92.5%);
+    backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    color: #f2f2f2;
+    font-weight: 500;
+    padding: 16px;
+    position: absolute;
+    top: 50px;
+    right: 16px;
+    width: 247px;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    font-family: Inter, sans-serif;
+    text-align: left;
+    border-top: 1px solid rgba(130, 130, 130, 1);
+    padding: 16px 0;
+    cursor: pointer;
+}
+
+.nav-item:first-of-type {
+    border-top: none;
+}
+
+.nav-link {
+    text-decoration: none; /* Ensure default link styling is removed */
+    color: inherit; /* Inherit color from parent */
+}

@@ -6,10 +6,13 @@ import TaskDetail from './assets/HouseKeeper/TaskDetail.jsx';
 import "./assets/HouseKeeper/StyleTaskDetails.css";
 import TaskHistory from './assets/HouseKeeper/TaskHistory.jsx';
 import "./assets/HouseKeeper/StyleTaskHistory.css";
+import Rooms from './assets/Manager/Rooms.jsx';
+import FloorOptions from './assets/Manager/FloorOptions.jsx';
+import App from './App.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Login />
+    <App />
 {/* <TaskDetail /> */}
 {/* <TaskHistory /> */}
   </React.StrictMode>

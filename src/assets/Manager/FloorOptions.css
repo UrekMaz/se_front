@@ -1,0 +1,37 @@
+.status-container {
+  overflow-x: auto;
+  display: flex;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--Black, #222);
+  font-weight: 500;
+  letter-spacing: -0.14px;
+  line-height: 24px;
+}
+
+.status-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--Spacing-SM, 32px);
+  border: 1px solid rgba(15, 15, 15, 0.2);
+  background-color: var(--White, #f9f9f9);
+  white-space: nowrap;
+  padding: 6px 16px;
+  font-family: Inter, sans-serif;
+  cursor: pointer;
+}
+
+.status-button.active {
+  border-color: rgba(13, 63, 32, 1);
+  background-color: var(--Primary, #0d3f20);
+  color: var(--White, #f9f9f9);
+}
+
+.status-button img {
+  aspect-ratio: 1;
+  object-fit: auto;
+  object-position: center;
+  width: 18px;
+  margin-left: 6px;
+}
