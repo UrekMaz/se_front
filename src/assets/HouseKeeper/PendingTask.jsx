@@ -1,7 +1,7 @@
 // src/assets/HouseKeeper/PendingTask.jsx
 import * as React from "react";
 import "./stylePendingTask.css";
-
+import TopNavBar from "../Manager/TopNavBar";
 function Task({ time, number, altText, description }) {
   return (
     <div className="task-container">
@@ -27,13 +27,14 @@ function PendingTask() {
 
   return (
     <div className="main-container">
-      <header className="header-container">
+      {/* <header className="header-container">
         <div className="header-content">
           <div className="header-icon" />
           <div className="header-title">Pending tasks</div>
           <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/a464867f09dc52848d46ae3f3f93bd43d5282af05a1135e547af6533f7732bf5?apiKey=433434157f134a548d8a823886c69352&" className="header-image" alt="" />
         </div>
-      </header>
+      </header> */}
+      <TopNavBar name="Pending Tasks"/>
       <section className="tasks-section">
         {tasks.map((task, index) => (
           <Task key={index} time={task.time} number={task.number} altText={task.altText} description={task.description} />

@@ -1,0 +1,17 @@
+/* TopNavBar.css */
+
+.header-container {
+  background-color: #ffffff; /* Set background color */
+  border-bottom: 1px solid #dddddd; /* Add a border at the bottom */
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-evenly; /* Align items evenly */
+  align-items: center; /* Vertically center items */
+  /* padding: 16px; Add padding */
+  width: 100%; /* Ensure full width */
+  max-width: 1200px; /* Optional: Limit the width */
+  margin: 0 auto; /* Center the container horizontally */
+}
+

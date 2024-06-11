@@ -1,35 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import Login from "./assets/HouseKeeper/login.jsx";
+import TaskDetail from './assets/HouseKeeper/TaskDetail.jsx';
+import TaskHistory from './assets/HouseKeeper/TaskHistory.jsx';
+import Rooms from './assets/Manager/Rooms.jsx';
+import PendingTask from './assets/HouseKeeper/PendingTask.jsx';
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<Navigate to="/rooms" />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/task-detail" element={<TaskDetail />} />
+                <Route path="/task-history" element={<TaskHistory />} />
+                <Route path="/pending-task" element={<PendingTask/>} />
+                <Route path="/rooms" element={<Rooms />} />
+            </Routes>
+        </Router>
+    );
 }
 
-export default App
+export default App;
