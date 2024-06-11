@@ -4,6 +4,7 @@
     color: #000000;
     font-size: 24px;
     cursor: pointer;
+    /* position: relative; */
 }
 
 .main-nav {
@@ -20,6 +21,8 @@
     top: 50px;
     right: 16px;
     width: 247px;
+    /* position: relative; Ensure the element is positioned relative or absolute */
+    z-index: 9999;
 }
 
 ul {

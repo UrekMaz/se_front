@@ -3,37 +3,126 @@ import { Link } from 'react-router-dom';
 import './Hamburger.css';
 
 function Hamburger() {
-    const [isOpen, setIsOpen] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     const toggleMenu = () => {
-        setIsOpen(!isOpen);
+        setMenuOpen(!menuOpen);
     }
+
+    const navItems = [
+        { path: "/pending-tasks", label: "Pending tasks" },
+        { path: "/task-history", label: "Task history" },
+        { path: "/rooms", label: "Rooms" },
+        { path: "/login", label: "Logout from _____" }
+    ];
 
     return (
         <div>
-            <button onClick={toggleMenu} className="hamburger-button">
+            <button 
+                onClick={toggleMenu} 
+                className="hamburger-button" 
+                aria-expanded={menuOpen} 
+                aria-controls="main-nav"
+            >
                 &#9776; {/* Hamburger icon */}
             </button>
-            {isOpen && (
-                <div className="main-nav">
+            {menuOpen && (
+                <nav id="main-nav" className="main-nav">
                     <ul>
-                        <li className="nav-item">
-                            <Link to="/pending-tasks" onClick={toggleMenu} className="nav-link">Pending tasks</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/task-history" onClick={toggleMenu} className="nav-link">Task history</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/rooms" onClick={toggleMenu} className="nav-link">Rooms</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/logout" onClick={toggleMenu} className="nav-link">Logout from _____</Link>
-                        </li>
+                        {navItems.map((item, index) => (
+                            <li key={index} className="nav-item">
+                                <Link to={item.path} onClick={toggleMenu} className="nav-link">
+                                    {item.label}
+                                </Link>
+                            </li>
+                        ))}
                     </ul>
-                </div>
+                </nav>
             )}
         </div>
     );
 }
+function HamburgerMaster() {
+    const [menuOpen, setMenuOpen] = useState(false);
 
-export default Hamburger;
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    }
+
+    const navItems = [
+        { path: "/edit-menu", label: "Temporarily edit menu" },
+        { path: "/pending-tasks", label: "Pending tasks" },
+        { path: "/billing", label: "Billing" },
+        { path: "/task-history", label: "Task history" },
+        { path: "/in-room-dining-history", label: "In-room dining history" },
+        { path: "/logout", label: "Logout from _____" }
+    ];
+
+    return (
+        <div>
+            <button 
+                onClick={toggleMenu} 
+                className="hamburger-button" 
+                aria-expanded={menuOpen} 
+                aria-controls="main-nav"
+            >
+                &#9776; {/* Hamburger icon */}
+            </button>
+            {menuOpen && (
+                <nav id="main-nav" className="main-nav">
+                    <ul>
+                        {navItems.map((item, index) => (
+                            <li key={index} className="nav-item">
+                                <Link to={item.path} onClick={toggleMenu} className="nav-link">
+                                    {item.label}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            )}
+        </div>
+    );
+}
+function HamburgerRestaurant() {
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    }
+
+    const navItems = [
+        { path: "/pending-orders", label: "Pending orders" },
+        { path: "/edit-menu", label: "Temporarily edit menu" },
+        { path: "/dining-history", label: "In-room dining history" },
+        { path: "/logout", label: "Logout from _____" }
+    ];
+
+    return (
+        <div>
+            <button 
+                onClick={toggleMenu} 
+                className="hamburger-button" 
+                aria-expanded={menuOpen} 
+                aria-controls="main-nav"
+            >
+                &#9776; {/* Hamburger icon */}
+            </button>
+            {menuOpen && (
+                <nav id="main-nav" className="main-nav">
+                    <ul>
+                        {navItems.map((item, index) => (
+                            <li key={index} className="nav-item">
+                                <Link to={item.path} onClick={toggleMenu} className="nav-link">
+                                    {item.label}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            )}
+        </div>
+    );
+}
+export {Hamburger, HamburgerMaster, HamburgerRestaurant};
+// export default Hamburger;
