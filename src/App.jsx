@@ -12,9 +12,10 @@ function App() {
             <Routes>
                 <Route path="/" element={<Navigate to="/rooms" />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/logout" element={<Login />} />
                 <Route path="/task-detail" element={<TaskDetail />} />
                 <Route path="/task-history" element={<TaskHistory />} />
-                <Route path="/pending-task" element={<PendingTask/>} />
+                <Route path="/pending-tasks" element={<PendingTask/>} />
                 <Route path="/rooms" element={<Rooms />} />
             </Routes>
         </Router>

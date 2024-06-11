@@ -33,7 +33,7 @@ function LoginButton() {
   const navigate = useNavigate();
   
   const handleClick = () => {
-    navigate("/pending-task");
+    navigate("/pending-tasks");
   }
   
   return (
@@ -73,17 +73,22 @@ function Login() {
   );
 }
 
-function login() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/pending-task" element={<PendingTask />} />
-        {/* <Route path="/task-detail/:taskId" element={<TaskDetail />} /> */}
-        {/* <Route path="/task-detail" element={<TaskDetail />} /> */}
-      </Routes>
-    </Router>
-  );
-}
+// Redundant component
 
-export default login;
+// function login() {
+//   const navigate = useNavigate();
+//   navigate('/pending-tasks');
+//   return (
+//     // <Router>
+//     //   <Routes>
+//     //     <Route path="/" element={<Login />} />
+//     //     <Route path="/pending-task" element={<PendingTask />} />
+//     //     {/* <Route path="/task-detail/:taskId" element={<TaskDetail />} /> */}
+//     //     {/* <Route path="/task-detail" element={<TaskDetail />} /> */}
+//     //   </Routes>
+//     // </Router>
+//     null
+//   );
+// }
+
+export default Login;

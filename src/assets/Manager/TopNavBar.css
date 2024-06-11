@@ -2,16 +2,19 @@
 
 .header-container {
   background-color: #ffffff; /* Set background color */
-  border-bottom: 1px solid #dddddd; /* Add a border at the bottom */
+  border-bottom: 1px solid #dddddd; /*Add a border at the bottom */
+  margin-bottom: 3px;
 }
 
 .header-content {
   display: flex;
-  justify-content: space-evenly; /* Align items evenly */
+  justify-content: space-between; /*Align items evenly*/
   align-items: center; /* Vertically center items */
   /* padding: 16px; Add padding */
-  width: 100%; /* Ensure full width */
+  width: 100%;/* Ensure full width*/
   max-width: 1200px; /* Optional: Limit the width */
   margin: 0 auto; /* Center the container horizontally */
+  /* padding-left: 0px; */
+  /* border: 2px solid black; */
 }
 

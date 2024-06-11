@@ -1,19 +1,20 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import './BackButton.css';
 
 function BackButton() {
-  const history = useHistory();
+    const history = useHistory();
 
-  const handleGoBack = () => {
-    history.goBack();
-  };
+    const handleBack = () => {
+        if (history.length > 1) {
+            history.goBack();
+        }
+    };
 
-  return (
-    <button onClick={handleGoBack} className="back-button">
-      &#8249;
-    </button>
-  );
+    return (
+        <button onClick={handleBack} className="back-button">
+            Back
+        </button>
+    );
 }
 
 export default BackButton;
