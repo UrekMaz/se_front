@@ -13,10 +13,7 @@ import  Billing from './assets/master/billing.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* <App /> */}
-{/* <TaskDetail /> */}
-{/* <TaskHistory /> */}
-<Billing />
-  </React.StrictMode>
-);
+   <App/>
+  </React.StrictMode>,
+)
 
