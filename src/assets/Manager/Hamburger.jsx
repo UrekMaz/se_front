@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Hamburger.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 function Hamburger() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -24,7 +26,7 @@ function Hamburger() {
                 aria-expanded={menuOpen} 
                 aria-controls="main-nav"
             >
-                &#9776; {/* Hamburger icon */}
+                <FontAwesomeIcon icon={faBars} />
             </button>
             {menuOpen && (
                 <nav id="main-nav" className="main-nav">

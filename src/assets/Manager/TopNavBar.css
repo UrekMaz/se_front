@@ -1,20 +1,35 @@
-/* TopNavBar.css */
-
 .header-container {
-  background-color: #ffffff; /* Set background color */
-  border-bottom: 1px solid #dddddd; /*Add a border at the bottom */
-  margin-bottom: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
 }
 
 .header-content {
   display: flex;
-  justify-content: space-between; /*Align items evenly*/
-  align-items: center; /* Vertically center items */
-  /* padding: 16px; Add padding */
-  width: 100%;/* Ensure full width*/
-  max-width: 1200px; /* Optional: Limit the width */
-  margin: 0 auto; /* Center the container horizontally */
-  /* padding-left: 0px; */
-  /* border: 2px solid black; */
+  align-items: center;
+  width: 100%;
+  position: relative;
 }
 
+.header-content .left,
+.header-content .center,
+.header-content .right {
+  display: flex;
+  align-items: center;
+}
+
+.header-content .left {
+  justify-content: flex-start;
+}
+
+.header-content .center {
+  flex: 1;
+  justify-content: center;
+}
+
+.header-content .right {
+  justify-content: flex-end;
+}

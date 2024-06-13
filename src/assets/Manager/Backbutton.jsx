@@ -1,20 +1,25 @@
+// BackButton.js
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import './BackButton.css'; // Import the CSS file
 
-function BackButton() {
-    const history = useHistory();
+const BackButton = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
 
-    const handleBack = () => {
-        if (history.length > 1) {
-            history.goBack();
-        }
-    };
+  const handleBack = () => {
+    if (location.pathname !== '/login') {
+      navigate(-1);
+    }
+  };
 
-    return (
-        <button onClick={handleBack} className="back-button">
-            Back
-        </button>
-    );
-}
+  return (
+    <button className="hamburger-button" onClick={handleBack}>
+      <FontAwesomeIcon icon={faArrowLeft} />
+    </button>
+  );
+};
 
 export default BackButton;

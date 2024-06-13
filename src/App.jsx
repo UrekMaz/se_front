@@ -10,7 +10,7 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<Navigate to="/rooms" />} />
+                <Route path="/" element={<Navigate to="/task-detail" />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/logout" element={<Login />} />
                 <Route path="/task-detail" element={<TaskDetail />} />

@@ -5,6 +5,7 @@ import { Hamburger, HamburgerMaster, HamburgerRestaurant } from "./Hamburger";
 // import { useHistory } from 'react-router-dom';
 import Header from "./Header";
 // import BackButton from './BackButton';
+import BackButton from "./Backbutton";
 
 function TopNavBar(props) {
   const renderHamburger = () => {
@@ -24,13 +25,13 @@ function TopNavBar(props) {
     <>
       <header className="header-container">
         <div className="header-content">
-          <div>
-            {/* <BackButton/> */}
+          <div className="left">
+            <BackButton/>
           </div>
-          <div className="header-content">
+          <div className="center">
             <Header name={props.name} />
           </div>
-          <div>
+          <div className="right">
             {renderHamburger()}
           </div>
           <hr />
