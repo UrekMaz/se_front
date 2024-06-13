@@ -1,0 +1,21 @@
+
+    .floating-widget {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #0d3f20;
+      color: white;
+      padding: 15px;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      text-align: center;
+      z-index: 1000; /* Ensure it is above other elements */
+      margin-right: 20px;
+    }
+  
+    .floating-widget:hover {
+      background-color: #0b3621;
+    }
+  
+  
