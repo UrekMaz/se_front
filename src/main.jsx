@@ -9,12 +9,14 @@ import "./assets/HouseKeeper/StyleTaskHistory.css";
 import Rooms from './assets/Manager/Rooms.jsx';
 import FloorOptions from './assets/Manager/FloorOptions.jsx';
 import App from './App.jsx';
+import  Billing from './assets/master/billing.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
 {/* <TaskDetail /> */}
 {/* <TaskHistory /> */}
+<Billing />
   </React.StrictMode>
 );
 
