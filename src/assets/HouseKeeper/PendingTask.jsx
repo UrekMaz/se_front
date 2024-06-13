@@ -1,43 +1,62 @@
-// src/assets/HouseKeeper/PendingTask.jsx
 import * as React from "react";
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import "./stylePendingTask.css";
 import TopNavBar from "../Manager/TopNavBar";
-function Task({ time, number, altText, description }) {
+
+function Task({ task, onClick }) {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
+
+  const handleTaskClick = (event) => {
+    if (!event.target.classList.contains("task-checkbox")) {
+      onClick(task);
+    }
+  };
+
   return (
-    <div className="task-container">
-      <div className="task-time">{time}</div>
+    <div className="task-container" onClick={handleTaskClick}>
+      <div className="task-time">{task.time}</div>
       <div className="task-content">
-        <div className="task-number">{number}</div>
-        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/e397f7a47a40e425035fd00bf13b9cf61bdae76bd84c2c3e31119c42522acfd6?apiKey=433434157f134a548d8a823886c69352&" className="task-image" alt={altText} />
+        <div className="task-number">{task.number}</div>
+        {/* <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/e397f7a47a40e425035fd00bf13b9cf61bdae76bd84c2c3e31119c42522acfd6?apiKey=433434157f134a548d8a823886c69352&" className="task-image" alt={task.altText} /> */}
+        <input
+          type="checkbox"
+          className="task-checkbox"
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+        />
       </div>
       <div className="task-description-container">
-        <div className="task-description">{description}</div>
+        <div className="task-description">{task.description}</div>
       </div>
     </div>
   );
 }
 
 function PendingTask() {
+  const navigate = useNavigate();
+  
   const tasks = [
-    { time: "3:24", number: "123", altText: "", description: "Extra towel required" },
-    { time: "3:24", number: "123", altText: "", description: "Extra towel required" },
-    { time: "3:24", number: "123", altText: "", description: "Extra towel required" },
-    { time: "3:24", number: "123", altText: "", description: "Extra towel required" }
+    { time: "9:00", number: "101", altText: "", description: "Give EXTRA TOWEL to Uthkrist" },
+    { time: "10:30", number: "205", altText: "", description: "Give PILLOWS to Anmol" },
+    { time: "12:45", number: "309", altText: "", description: "Clean whiteboard markers" },
+    { time: "14:15", number: "415", altText: "", description: "Replace light bulb in conference room" }
   ];
+
+  const handleTaskClick = (task) => {
+    navigate('/task-detail', { state: { task } });
+  };
 
   return (
     <div className="main-container">
-      {/* <header className="header-container">
-        <div className="header-content">
-          <div className="header-icon" />
-          <div className="header-title">Pending tasks</div>
-          <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/a464867f09dc52848d46ae3f3f93bd43d5282af05a1135e547af6533f7732bf5?apiKey=433434157f134a548d8a823886c69352&" className="header-image" alt="" />
-        </div>
-      </header> */}
       <TopNavBar name="Pending Tasks"/>
       <section className="tasks-section">
         {tasks.map((task, index) => (
-          <Task key={index} time={task.time} number={task.number} altText={task.altText} description={task.description} />
+          <Task key={index} task={task} onClick={handleTaskClick} />
         ))}
       </section>
     </div>
