@@ -73,7 +73,7 @@ function decrement()
     return (
       <>
       <a href="/confirmation"><div className="h"><RHeader1 message={"Housekeeping"}/></div></a>
-        <section className="services">
+        <section className="services-1">
           {services.map((service, index) => (
             <ServiceCard key={index} {...service} />
           ))}

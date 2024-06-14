@@ -3,7 +3,8 @@
     max-width: 480px;
     width: 100%;
     flex-direction: column;
-    margin: 0 auto;
+    margin: 0 auto;margin-left: 30px;
+
   }
 
   .order-card {
