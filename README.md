@@ -1,7 +1,11 @@
-Dependcies to install
+# Dependcies to install
+
   npm install
+  
   (if the above works then no need for the ones below)
+  
   npm install --save @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
+  
   npm install --save react-router-dom
   
 
