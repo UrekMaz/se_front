@@ -1,6 +1,6 @@
 import * as React from 'react';
 import "./InRoomDining.css"
-import TopNavBar from '../Manager/TopNavBar';
+import TopNavBar from "../Components/TopNavBar";
 const OrderRow = ({ order, cost, time }) => (
   <div className="order-row">
     <div className="order-info">{order}</div>

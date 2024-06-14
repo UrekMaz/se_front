@@ -1,11 +1,6 @@
 import * as React from "react";
-<<<<<<< HEAD
-import "./billing.css"
-import TopNavBar from '../Manager/TopNavBar';
-=======
 import "./billing.css";
 import TopNavBar from "../Components/TopNavBar";
->>>>>>> 4ddf67c63dc74c979f43cb00a03be44eab4c5b69
 function Billing() {
   return (
     <>
@@ -13,19 +8,7 @@ function Billing() {
         
       `}</style>
       <section className="container">
-<<<<<<< HEAD
-        
-          
-           
-           
-            
-            <TopNavBar name="Billing" hamburger="master"/>
-           
-        
-       
-=======
         <TopNavBar name="Billing for 123" hamburger='master'/>
->>>>>>> 4ddf67c63dc74c979f43cb00a03be44eab4c5b69
         <section className="content">
           <div className="total-section">
             <div className="total-label">Total outstanding</div>
