@@ -1,8 +1,6 @@
 import * as React from "react";
-import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./styleLogin.css";
-import PendingTask from "./PendingTask";
-import TaskDetail from "./TaskDetail";
 
 function AppName() {
   return <h1 className="app-name">App name</h1>;
@@ -29,11 +27,11 @@ function InputField({ label, placeholder, id }) {
   );
 }
 
-function LoginButton() {
+function LoginButton({ message }) {
   const navigate = useNavigate();
   
   const handleClick = () => {
-    navigate("/pending-tasks");
+    navigate(`/${message}`);
   }
   
   return (
@@ -43,7 +41,7 @@ function LoginButton() {
   );
 }
 
-function LoginForm() {
+function LoginForm({ message }) {
   return (
     <form className="login-form">
       <InputField
@@ -56,39 +54,22 @@ function LoginForm() {
         placeholder="Password"
         id="password"
       />
-      <LoginButton />
+      <LoginButton message={message} />
     </form>
   );
 }
 
-function Login() {
+function Login({message}) {
+  
   return (
     <main className="main-container">
       <AppName />
       <section className="login-section">
         <LoginHeader />
-        <LoginForm />
+        <LoginForm message={message} />
       </section>
     </main>
   );
 }
-
-// Redundant component
-
-// function login() {
-//   const navigate = useNavigate();
-//   navigate('/pending-tasks');
-//   return (
-//     // <Router>
-//     //   <Routes>
-//     //     <Route path="/" element={<Login />} />
-//     //     <Route path="/pending-task" element={<PendingTask />} />
-//     //     {/* <Route path="/task-detail/:taskId" element={<TaskDetail />} /> */}
-//     //     {/* <Route path="/task-detail" element={<TaskDetail />} /> */}
-//     //   </Routes>
-//     // </Router>
-//     null
-//   );
-// }
 
 export default Login;

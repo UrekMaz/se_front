@@ -1,5 +1,6 @@
 import * as React from 'react';
-
+import "./Home.css"
+import TopNavBar from '../Manager/TopNavBar';
 function ServiceCard({ imageSrc, altText, label }) {
   return (
     <div className="service-card">
@@ -21,6 +22,7 @@ function Home() {
 
   return (
     <>
+    <TopNavBar name="Home"/>
       <section className="services-container">
         {services.map((service, index) => (
           <ServiceCard 
@@ -32,39 +34,7 @@ function Home() {
         ))}
       </section>
       <style jsx>{`
-        .services-container {
-          display: flex;
-          flex-direction: column;
-          font-size: 18px;
-          color: var(--Black, #222);
-          font-weight: 700;
-          letter-spacing: -0.18px;
-          line-height: 150%;
-          max-width: 340px;
-        }
-        .service-card {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border: 1px solid rgba(205, 234, 207, 1);
-          border-radius: 20px;
-          gap: 20px;
-          margin-top: 15px;
-          padding: 12px;
-        }
-        .service-image {
-          aspect-ratio: 1.59;
-          object-fit: cover;
-          width: 112px;
-          max-width: 100%;
-        }
-        .service-label {
-          font-family: 'Inter', sans-serif;
-          flex: 1;
-        }
-        .service-card:first-of-type {
-          margin-top: 0;
-        }
+        
       `}</style>
     </>
   );
