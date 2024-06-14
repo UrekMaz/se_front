@@ -13,7 +13,7 @@ function Billing() {
            
            
             
-            <TopNavBar name="Billing"/>
+            <TopNavBar name="Billing" hamburger="master"/>
            
         
        

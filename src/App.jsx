@@ -18,6 +18,7 @@ import Billing from './assets/master/billing.jsx';
 import Edit_Menu from './assets/master/Menu_edit.jsx';
 
 import Assign_task from './assets/master/Assign_task.jsx';
+import InRoomDining from './assets/master/InRoomDining.jsx';
 function App() {
     return (
         <Router>
@@ -32,15 +33,17 @@ function App() {
                 <Route path="/login_h" element={<Login message="pending-tasks" />} />
                 <Route path="/logout" element={<Login message="login_h" />} />
                 <Route path="/task-detail" element={<TaskDetail />} />
-                <Route path="/task-history" element={<TaskHistory />} />
+                <Route path="/master/task-history" element={<TaskHistory hamburger="master"/>} />
+                {/*<Route path="/task-history" element={<TaskHistory hamburger="manager"/>} />*/}
                 <Route path="/pending-tasks" element={<PendingTask/>} />
                 <Route path="/rooms" element={<Rooms />} />
                 <Route path="/login_master" element={<Login message="home"/>}/>
                 <Route path="/home" element={<Home/>} />
                 <Route path="/resto-pending" element={<RestoPending/>} />
                 <Route path="/billing" element={<Billing/>} />
-                <Route path="/edit_menu" element={<Edit_Menu/>} />
+                <Route path="/edit-menu" element={<Edit_Menu/>} />
                 <Route path="/task-assign" element={<Assign_task/>} />
+                <Route path="/in-room-dining-history" element={<InRoomDining/>} />
             </Routes>
         </Router>
     );

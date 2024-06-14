@@ -53,7 +53,7 @@ function Assign_task() {
 
   return (
     <>
-      <TopNavBar name="Pending tasks"/>
+      <TopNavBar name="Pending tasks" hamburger="master"/>
       {data.map(({ time, requestId, description, id }) => (
         <Card key={id} time={time} requestId={requestId} description={description} />
       ))}

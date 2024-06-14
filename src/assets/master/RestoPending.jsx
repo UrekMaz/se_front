@@ -52,7 +52,7 @@ export default function RestoPending() {
 
   return (
     <>
-    <TopNavBar name="Pending Orders"/>
+    <TopNavBar name="Pending Orders" hamburger="master"/>
       <main className="orders-container">
         {orders.map((order, index) => (
           <OrderCard key={index} {...order} />

@@ -53,9 +53,9 @@ function HamburgerMaster() {
 
     const navItems = [
         { path: "/edit-menu", label: "Temporarily edit menu" },
-        { path: "/pending-tasks", label: "Pending tasks" },
+        { path: "/task-assign", label: "Pending tasks" },
         { path: "/billing", label: "Billing" },
-        { path: "/task-history", label: "Task history" },
+        { path: "/master/task-history", label: "Task history"},
         { path: "/in-room-dining-history", label: "In-room dining history" },
         { path: "/logout", label: "Logout from _____" }
     ];

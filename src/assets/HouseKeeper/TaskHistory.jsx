@@ -10,7 +10,7 @@ const TaskItem = ({ roomNumber, taskDescription, taskTime }) => (
   </div>
 );
 
-function TaskHistory() {
+function TaskHistory({hamburger}) {
   const tasks = [
     { roomNumber: '123', taskDescription: 'Write blog post for demo day', taskTime: '3:40 pm' },
     { roomNumber: '123', taskDescription: 'Publish blog page', taskTime: '3:40 pm' },
@@ -35,7 +35,7 @@ function TaskHistory() {
           <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/fda1767f39039bb58caf298010157b21a995ef90a4bb03fb215be599bd07526c?apiKey=433434157f134a548d8a823886c69352&" className="header-icon" alt="" />
         </div>
       </header> */}
-      <TopNavBar name = "Task History"/>
+      <TopNavBar name = "Task History" hamburger={hamburger}/>
       <div className="search-container">
         <div className="search-bar">
           <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/8c193da1201903f8e04b5129e99905ac2c6b3d2a5a84921094bcaf7282591cfc?apiKey=433434157f134a548d8a823886c69352&" className="search-icon" alt="" />
