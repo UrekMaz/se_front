@@ -1,0 +1,106 @@
+/* import "./MyComponent.css"; */
+.container {
+  display: flex;
+  max-width: 375px;
+  flex-direction: column;
+}
+
+.search-section {
+  align-self: center;
+  display: flex;
+  gap: 8px;
+  font-size: 16px;
+  color: #828282;
+  font-weight: 400;
+  white-space: nowrap;
+  line-height: 150%;
+}
+
+.search-bar {
+  border-radius: 8px;
+  border: 1px solid rgba(224, 224, 224, 1);
+  background-color: #fff;
+  display: flex;
+  gap: 12px;
+  flex-grow: 1;
+  padding: 8px 12px;
+}
+
+.search-icon {
+  width: 24px;
+}
+
+.search-text {
+  flex: 1;
+  font-family: Inter, sans-serif;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.user-icon {
+  width: 40px;
+  border-radius: 8px;
+}
+
+.orders-section {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 14px;
+  width: 100%;
+}
+
+.orders-header {
+  display: flex;
+  gap: 20px;
+  background-color: var(--Secondary, #cdeacf);
+  color: #828282;
+  white-space: nowrap;
+  line-height: 140%;
+  padding: 10px 32px;
+}
+
+.header-item {
+  flex: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-family: Inter, sans-serif;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  color: var(--Black, #222);
+}
+
+.order-item {
+  display: flex;
+  gap: 20px;
+  padding: 10px 32px;
+  border-top: 1px solid rgba(224, 224, 224, 1);
+}
+
+.order-name {
+  flex-grow: 1;
+  font-family: Inter, sans-serif;
+  line-height: 20px;
+}
+
+.order-cost {
+  text-align: right;
+  flex-basis: auto;
+  font-family: Inter, sans-serif;
+  line-height: 140%;
+  align-self: stretch;
+  margin: auto 0;
+}
+
+.order-time {
+  color: #828282;
+  font-family: Inter, sans-serif;
+  margin: auto 0;
+  padding: 8px 1px;
+}

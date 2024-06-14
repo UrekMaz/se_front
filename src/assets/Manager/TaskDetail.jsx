@@ -2,8 +2,8 @@
   import * as React from 'react';
   import { useLocation } from 'react-router-dom';
   import './StyleTaskDetails.css';
-  import TopNavBar from '../Components/TopNavBar';
-  import PropTypes from 'prop-types';
+  import TopNavBar from "../Components/TopNavBar";
+   import PropTypes from 'prop-types';
 
   function TaskDetails({ task }) { 
     return ( 
@@ -54,13 +54,13 @@
     ); 
   }
 
-  function TaskDetail({hamburger}) { 
+  function TaskDetailManager() { 
     const location = useLocation();
     const { task } = location.state;
 
     return ( 
       <main className="main-container"> 
-        <TopNavBar name="Task Details" hamburger={hamburger}/> 
+        <TopNavBar name="Task Details" hamburger="manager"/> 
         {/* <TaskDetails task={task} />  */}
         <CostDetails task={task} /> 
       </main> 
@@ -83,4 +83,4 @@
     },
   };
 
-  export default TaskDetail;
+  export default TaskDetailManager;

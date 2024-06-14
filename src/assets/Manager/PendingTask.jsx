@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import "./stylePendingTask.css";
 import TopNavBar from "../Components/TopNavBar";
 
+
 function Task({ task, onClick }) {
   const [isChecked, setIsChecked] = useState(false);
 
@@ -38,12 +39,11 @@ function Task({ task, onClick }) {
   );
 }
 
-
-function PendingTask({ hamburger }) {
+function PendingTaskManager() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { hamburger2 } = location.state || {};
-
+  const { hamburger } = location.state || {};
+  
   const tasks = [
     { time: "9:00", number: "101", altText: "", description: "Give EXTRA TOWEL to Uthkrist" },
     { time: "10:30", number: "205", altText: "", description: "Give PILLOWS to Anmol" },
@@ -52,22 +52,19 @@ function PendingTask({ hamburger }) {
   ];
 
   const handleTaskClick = (task) => {
-    if (hamburger === "manager") {
-      navigate('/manager/task-detail', { state: { task, hamburger } });
-    } else {
-      navigate('/housekeeper/task-detail', { state: { task, hamburger } });
-    }
+    navigate('/manager/task-detail', { state: { task } });
   };
 
   return (
     <div className="main-container">
-      <TopNavBar name="Pending Tasks" hamburger={hamburger} />
+      <TopNavBar name="Pending Tasks" hamburger={hamburger}/>
       <section className="tasks-section">
         {tasks.map((task, index) => (
-          <Task key={index} task={task} onClick={() => handleTaskClick(task)} />
+          <Task key={index} task={task} onClick={handleTaskClick} />
         ))}
       </section>
     </div>
   );
 }
-export default PendingTask;
+
+export default PendingTaskManager;
