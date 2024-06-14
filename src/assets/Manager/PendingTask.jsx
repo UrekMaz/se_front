@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import "./stylePendingTask.css";
 import TopNavBar from "../Components/TopNavBar";
 
+
 function Task({ task, onClick }) {
   const [isChecked, setIsChecked] = useState(false);
 
@@ -38,7 +39,7 @@ function Task({ task, onClick }) {
   );
 }
 
-function PendingTask() {
+function PendingTaskManager() {
   const navigate = useNavigate();
   const location = useLocation();
   const { hamburger } = location.state || {};
@@ -51,7 +52,7 @@ function PendingTask() {
   ];
 
   const handleTaskClick = (task) => {
-    navigate('/task-detail', { state: { task } });
+    navigate('/task-detail-manager', { state: { task } });
   };
 
   return (
@@ -66,4 +67,4 @@ function PendingTask() {
   );
 }
 
-export default PendingTask;
+export default PendingTaskManager;

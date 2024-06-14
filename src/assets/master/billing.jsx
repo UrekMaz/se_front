@@ -1,5 +1,6 @@
 import * as React from "react";
-import "./billing.css"
+import "./billing.css";
+import TopNavBar from "../Components/TopNavBar";
 function Billing() {
   return (
     <>
@@ -7,23 +8,7 @@ function Billing() {
         
       `}</style>
       <section className="container">
-        <header className="billing-header">
-          <div className="billing-details">
-            <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/ac75f1ba2701230453b3f69fef931650b0528a0f0c83dccc92d66b030e2d67ca?apiKey=433434157f134a548d8a823886c69352&"
-              className="icon"
-              alt="billing icon"
-            />
-            <div className="billing-title">Billing for 123</div>
-            <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/a9fbdfdc290834047df5f26436640f186da11fcff3c4c24886950b4f761d4cac?apiKey=433434157f134a548d8a823886c69352&"
-              className="icon"
-              alt="settings icon"
-            />
-          </div>
-        </header>
+        <TopNavBar name="Billing for 123" hamburger='master'/>
         <section className="content">
           <div className="total-section">
             <div className="total-label">Total outstanding</div>

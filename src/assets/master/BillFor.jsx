@@ -4,11 +4,11 @@ import FloorOptions from '../Components/Rooms Components/FloorOptions';
 import FloorList from '../Components/Rooms Components/FloorList';
 import TopNavBar from '../Components/TopNavBar';
 
-function Rooms() {
+function BillFor() {
 
   return (
       <>
-        <TopNavBar name="Room Service" />
+        <TopNavBar name="Bill for" hamburger="master"/>
         <FloorOptions />
         <FloorList />
         <FloorList />
@@ -17,4 +17,4 @@ function Rooms() {
   );
 }
 
-export default Rooms;
+export default BillFor;
