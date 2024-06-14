@@ -54,13 +54,13 @@
     ); 
   }
 
-  function TaskDetail() { 
+  function TaskDetail({hamburger}) { 
     const location = useLocation();
     const { task } = location.state;
 
     return ( 
       <main className="main-container"> 
-        <TopNavBar name="Task Details" hamburger="housekeeper"/> 
+        <TopNavBar name="Task Details" hamburger={hamburger}/> 
         {/* <TaskDetails task={task} />  */}
         <CostDetails task={task} /> 
       </main> 

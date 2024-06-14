@@ -38,11 +38,12 @@ function Task({ task, onClick }) {
   );
 }
 
-function PendingTask() {
+
+function PendingTask({ hamburger }) {
   const navigate = useNavigate();
   const location = useLocation();
-  const { hamburger } = location.state || {};
-  
+  const { hamburger2 } = location.state || {};
+
   const tasks = [
     { time: "9:00", number: "101", altText: "", description: "Give EXTRA TOWEL to Uthkrist" },
     { time: "10:30", number: "205", altText: "", description: "Give PILLOWS to Anmol" },
@@ -51,19 +52,22 @@ function PendingTask() {
   ];
 
   const handleTaskClick = (task) => {
-    navigate('/task-detail', { state: { task } });
+    if (hamburger === "manager") {
+      navigate('/manager/task-detail', { state: { task, hamburger } });
+    } else {
+      navigate('/housekeeper/task-detail', { state: { task, hamburger } });
+    }
   };
 
   return (
     <div className="main-container">
-      <TopNavBar name="Pending Tasks" hamburger={hamburger}/>
+      <TopNavBar name="Pending Tasks" hamburger={hamburger} />
       <section className="tasks-section">
         {tasks.map((task, index) => (
-          <Task key={index} task={task} onClick={handleTaskClick} />
+          <Task key={index} task={task} onClick={() => handleTaskClick(task)} />
         ))}
       </section>
     </div>
   );
 }
-
 export default PendingTask;

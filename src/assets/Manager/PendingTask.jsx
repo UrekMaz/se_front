@@ -52,7 +52,7 @@ function PendingTaskManager() {
   ];
 
   const handleTaskClick = (task) => {
-    navigate('/task-detail-manager', { state: { task } });
+    navigate('/manager/task-detail', { state: { task } });
   };
 
   return (

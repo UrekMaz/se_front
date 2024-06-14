@@ -12,9 +12,9 @@ function Hamburger() {
     }
 
     const navItems = [
-        { path: "/pending-tasks-manager", label: "Pending tasks" },
-        { path: "/task-history-manager", label: "Task history" },
-        { path: "/rooms-manager", label: "Rooms" },
+        { path: "/manager/pending-tasks", label: "Pending tasks" },
+        { path: "/manager/task-history", label: "Task history" },
+        { path: "/manager/rooms", label: "Rooms" },
         { path: "/login_h", label: "Logout from _____" }
     ];
 
@@ -92,12 +92,17 @@ function HamburgerRestaurant() {
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     }
-
+//     const navItems = [
+//         { path: "/restaurant-pending", label: "Pending orders" },
+//         { path: "/resto-edit-menu", label: "Edit Menu" },
+//         { path: "/resto-order-history", label: "History" },
+//         { path: "/resto-login", label: "Logout from _____" }
+//     ];
     const navItems = [
-        { path: "/pending-orders", label: "Pending orders" },
-        { path: "/edit-menu", label: "Temporarily edit menu" },
-        { path: "/dining-history", label: "In-room dining history" },
-        { path: "/logout", label: "Logout from _____" }
+        { path: "/restaurant/restaurant-pending", label: "Pending orders" },
+        { path: "/restaurant/edit-menu", label: "Edit Menu" },
+        { path: "/restaurant/order-history", label: "Order History" },
+        { path: "/restaurant/login", label: "Logout from_____"}
     ];
 
     return (
@@ -134,8 +139,8 @@ function HamburgerHousekeeper() {
     }
 
     const navItems = [
-        { path: "/pending-tasks", label: "Pending tasks" },
-        { path: "/task-history", label: "Task history" },
+        { path: "/housekeeper/pending-tasks", label: "Pending tasks" },
+        { path: "/housekeeper/task-history", label: "Task history" },
         { path: "/login_h", label: "Logout from _____" }
     ];
 
