@@ -1,6 +1,7 @@
 import * as React from 'react';
 import "./Home.css"
 import TopNavBar from '../Manager/TopNavBar';
+
 function ServiceCard({ imageSrc, altText, label }) {
   return (
     <div className="service-card">
@@ -22,7 +23,7 @@ function Home() {
 
   return (
     <>
-    <TopNavBar name="Home"/>
+    <div className='d'><TopNavBar name="Home"/></div>
       <section className="services-container">
         {services.map((service, index) => (
           <ServiceCard 

@@ -50,6 +50,10 @@ export default function RHeader1({message}) {
             font-size: 16px;
             margin-left: 100px; /* Remove default margin */
           }
+          button
+          {
+            width:350px
+          }
         `}</style>
       </>
     );

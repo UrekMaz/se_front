@@ -14,6 +14,10 @@ import OrderHistory from './user/OrderHistory'
 import Housekeeping from './user/Housekeeping'
 import Home from './assets/master/Home.jsx'
 import RestoPending from './assets/master/RestoPending.jsx';
+import Billing from './assets/master/billing.jsx';
+import Edit_Menu from './assets/master/Menu_edit.jsx';
+
+import Assign_task from './assets/master/Assign_task.jsx';
 function App() {
     return (
         <Router>
@@ -34,7 +38,9 @@ function App() {
                 <Route path="/login_master" element={<Login message="home"/>}/>
                 <Route path="/home" element={<Home/>} />
                 <Route path="/resto-pending" element={<RestoPending/>} />
-               
+                <Route path="/billing" element={<Billing/>} />
+                <Route path="/edit_menu" element={<Edit_Menu/>} />
+                <Route path="/task-assign" element={<Assign_task/>} />
             </Routes>
         </Router>
     );

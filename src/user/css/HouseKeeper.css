@@ -1,9 +1,11 @@
-.services {
+.services-1 {
     display: flex;
     max-width: 327px;
     flex-direction: column;
     color: var(--Black, #222);
     font-weight: 400;
+    margin-top: 12px;
+    margin-left: 3px;
   }
   .service-card {
     border-radius: 11.84px;
