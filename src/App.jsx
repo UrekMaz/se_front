@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
-import Dashboard from './user/Dashboard2'
-import Login from "./assets/HouseKeeper/login.jsx";
+
+
 import TaskDetail from './assets/HouseKeeper/TaskDetail.jsx';
 import TaskHistory from './assets/HouseKeeper/TaskHistory.jsx';
-import Rooms from './assets/Manager/Rooms.jsx';
+;
 import PendingTask from './assets/HouseKeeper/PendingTask.jsx';
 import Login from "./assets/HouseKeeper/login.jsx";
 
@@ -26,6 +26,7 @@ import RestaurantSelect from './user/RestaurantSelect';
 import Menu from './user/Menu';
 import OrderConfirmation from './user/OrderConfirmation';
 import OrderHistory from './user/OrderHistory';
+import Housekeeping from './user/Housekeeping.jsx';
 
 // Restaurant
 import RestoLogin from './assets/Restaurant/RestoLogin.jsx';
@@ -36,7 +37,7 @@ import RestoOrderHistory from './assets/Restaurant/RestoOrderHistory.jsx';
 // Pages
 import HotelLanding from './assets/Pages/HotelLanding.jsx';
 
-import Billing from './assets/master/billing.jsx';
+
 import Edit_Menu from './assets/master/Menu_edit.jsx';
 
 import Assign_task from './assets/master/Assign_task.jsx';
