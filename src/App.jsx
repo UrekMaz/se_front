@@ -12,8 +12,8 @@ import Menu from './user/Menu'
 import OrderConfirmation from './user/OrderConfirmation'
 import OrderHistory from './user/OrderHistory'
 import Housekeeping from './user/Housekeeping'
-import Home from './master/Home'
-import RestoPending from './master/RestoPending'
+import Home from './assets/master/Home.jsx'
+import RestoPending from './assets/master/RestoPending.jsx';
 function App() {
     return (
         <Router>
@@ -25,12 +25,16 @@ function App() {
                 <Route path="/:restaurantName" element={<Menu/>} />
                 <Route path="/confirm" element={<OrderConfirmation/>} />
                 <Route path="/confirmation" element={<Dashboard/>} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/logout" element={<Login />} />
+                <Route path="/login_h" element={<Login message="pending-tasks" />} />
+                <Route path="/logout" element={<Login message="login_h" />} />
                 <Route path="/task-detail" element={<TaskDetail />} />
                 <Route path="/task-history" element={<TaskHistory />} />
                 <Route path="/pending-tasks" element={<PendingTask/>} />
                 <Route path="/rooms" element={<Rooms />} />
+                <Route path="/login_master" element={<Login message="home"/>}/>
+                <Route path="/home" element={<Home/>} />
+                <Route path="/resto-pending" element={<RestoPending/>} />
+               
             </Routes>
         </Router>
     );

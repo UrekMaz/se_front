@@ -15,7 +15,7 @@ function Hamburger() {
         { path: "/pending-tasks", label: "Pending tasks" },
         { path: "/task-history", label: "Task history" },
         { path: "/rooms", label: "Rooms" },
-        { path: "/login", label: "Logout from _____" }
+        { path: "/login_h", label: "Logout from _____" }
     ];
 
     return (
