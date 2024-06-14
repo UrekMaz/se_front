@@ -1,0 +1,81 @@
+/* LoginForm.css */
+.login-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+  max-width: 375px;
+  margin: auto;
+}
+
+.app-name {
+  color: var(--Primary, #0d3f20);
+  text-align: center;
+  letter-spacing: -0.24px;
+  font: 600 24px/1.5 Inter, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.login-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 139px;
+  width: 100%;
+}
+
+.login-title {
+  color: var(--Black, #222);
+  text-align: center;
+  font: 600 18px/1.5 Inter, -apple-system, Roboto, Helvetica, sans-serif;
+  margin-bottom: 24px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  padding: 0 24px;
+  width: 100%;
+}
+
+.input-row {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.input-label {
+  color: var(--Black, #222);
+  /* text-align: center; */
+  font-family: Inter, sans-serif;
+  line-height: 1.5;
+}
+
+.input-field {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid rgba(205, 234, 207, 1);
+  color: var(--Neutral-dark, #828282);
+  padding: 8px 16px;
+  margin-top: 18px;
+  line-height: 1.4;
+}
+
+#password .input-field {
+  margin-top: 19px;
+}
+
+.login-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background-color: var(--Primary, #0d3f20);
+  color: #fff;
+  font-weight: 500;
+  line-height: 1.4;
+  padding: 10px 16px;
+  margin-top: 24px;
+}

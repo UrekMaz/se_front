@@ -1,7 +1,6 @@
 import * as React from "react";
-import "./RestoPending.css"
-import TopNavBar from "../Components/TopNavBar";
-import { useLocation } from 'react-router-dom';
+import "./RestaurantPending.css"
+import TopNavBar from '../Components/TopNavBar';
 
 function OrderCard({ orderNumber, imageSrc, items, totalCost, orderTime }) {
   return (
@@ -27,10 +26,7 @@ function OrderCard({ orderNumber, imageSrc, items, totalCost, orderTime }) {
   );
 }
 
-export default function RestoPending() {
-  const location = useLocation();
-  const { hamburger } = location.state || {};
-
+export default function RestaurantPending() {
   const orders = [
     {
       orderNumber: "123",
@@ -57,7 +53,7 @@ export default function RestoPending() {
 
   return (
     <>
-    <TopNavBar name="Pending Orders" hamburger = {hamburger}/>
+    <TopNavBar name="Pending Orders" hamburger="restaurant" />
       <main className="orders-container">
         {orders.map((order, index) => (
           <OrderCard key={index} {...order} />

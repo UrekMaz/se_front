@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './StyleTaskHistory.css';
-import TopNavBar from '../Components/TopNavBar';
+import TopNavBar from '../Manager/TopNavBar';
 
 const TaskItem = ({ roomNumber, taskDescription, taskTime }) => (
   <div className="task-item">

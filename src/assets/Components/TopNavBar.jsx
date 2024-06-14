@@ -1,11 +1,9 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import './TopNavBar.css';
-import { Hamburger, HamburgerMaster, HamburgerRestaurant } from "./Hamburger";
-// import { useHistory } from 'react-router-dom';
-import Header from "./Header";
-// import BackButton from './BackButton';
-import BackButton from "./Backbutton";
+import { Hamburger, HamburgerMaster, HamburgerRestaurant, HamburgerHousekeeper } from "./TopNavBarComponents/Hamburger";
+import Header from "./TopNavBarComponents/Header";
+import BackButton from "./TopNavBarComponents/Backbutton";
 
 function TopNavBar(props) {
   const renderHamburger = () => {
@@ -16,6 +14,8 @@ function TopNavBar(props) {
         return <HamburgerMaster />;
       case "restaurant":
         return <HamburgerRestaurant />;
+      case "housekeeper":
+        return <HamburgerHousekeeper />;
       default:
         return <HamburgerRestaurant />; // default to HamburgerRestaurant
     }
@@ -26,7 +26,7 @@ function TopNavBar(props) {
       <header className="header-container">
         <div className="header-content">
           <div className="left">
-            <BackButton/>
+            <BackButton />
           </div>
           <div className="center">
             <Header name={props.name} />
@@ -34,7 +34,6 @@ function TopNavBar(props) {
           <div className="right">
             {renderHamburger()}
           </div>
-          <hr />
         </div>
       </header>
     </>
