@@ -1,8 +1,9 @@
-import React from 'react';
-import './LoginForm.css';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import './LoginForm.css';
 
-function LabelInputRow({ label, inputType, inputId, placeholder }) {
+function LabelInputRow({ label, inputType, inputId, placeholder, value, onChange }) {
   return (
     <div className="input-row">
       <label htmlFor={inputId} className="input-label">
@@ -14,19 +15,35 @@ function LabelInputRow({ label, inputType, inputId, placeholder }) {
         className="input-field"
         placeholder={placeholder}
         aria-label={label}
+        value={value}
+        onChange={onChange}
       />
     </div>
   );
 }
 
 function RestoLogin() {
-  const navigate = useNavigate(); // Use useNavigate hook for navigation
+  const [idNumber, setIdNumber] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
-    // Add your authentication logic here
-    // For demo purposes, let's navigate to a different route after login
-    navigate('/restaurant/restaurant-pending'); 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/restaurant/login', {
+        userId: idNumber,
+        password,
+      });
+      console.log(response.data);
+      if (response.status === 200) {
+        navigate('/restaurant/restaurant-pending');
+      } else {
+        alert(response.data.message);
+      }
+    } catch (error) {
+      console.error('There was an error logging in the user!', error);
+      alert('Login failed. Please check your credentials and try again.');
+    }
   };
 
   return (
@@ -42,12 +59,16 @@ function RestoLogin() {
             inputType="text"
             inputId="idNumber"
             placeholder="12345678"
+            value={idNumber}
+            onChange={(e) => setIdNumber(e.target.value)}
           />
           <LabelInputRow
             label="Enter password"
             inputType="password"
             inputId="password"
             placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <button className="login-btn" type="submit">
             Login
@@ -59,6 +80,3 @@ function RestoLogin() {
 }
 
 export default RestoLogin;
-
-
-
