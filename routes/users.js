@@ -1,5 +1,5 @@
 import express from 'express';
-import User from '../backend/models/userSchema';
+import Users from '../models/userSchema';
 
 const router = express.Router();
 

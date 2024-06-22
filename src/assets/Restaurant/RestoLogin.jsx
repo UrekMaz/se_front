@@ -30,13 +30,13 @@ function RestoLogin() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/restaurant/login', {
+      const response = await axios.post('http://localhost:5000/user/login', { // Updated endpoint
         userId: idNumber,
         password,
       });
       console.log(response.data);
       if (response.status === 200) {
-        navigate('/restaurant/restaurant-pending');
+        navigate('/user/dashboard'); // Updated navigation route
       } else {
         alert(response.data.message);
       }

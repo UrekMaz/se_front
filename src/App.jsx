@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 
 import TaskDetail from './assets/HouseKeeper/TaskDetail.jsx';
 import TaskHistory from './assets/HouseKeeper/TaskHistory.jsx';
-;
 import PendingTask from './assets/HouseKeeper/PendingTask.jsx';
 import Login from "./assets/HouseKeeper/login.jsx";
 
