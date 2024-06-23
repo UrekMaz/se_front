@@ -1,6 +1,8 @@
-import * as React from "react";
+import React from 'react';
+import { Link } from 'react-router-dom';
 import "./css/Dashboard.css"
 import FloatingWidget from "./Floatingwidget";
+
 function ServiceButton({ text }) {
   return (
     <button className="service-button" tabIndex="0">
@@ -8,6 +10,7 @@ function ServiceButton({ text }) {
     </button>
   );
 }
+
 function ImageComponent() {
   return (
     <>
@@ -19,56 +22,46 @@ function ImageComponent() {
           className="styled-image"
         />
       </figure>
-      <style jsx>{`
-        
-      `}</style>
     </>
   );
 }
 
 function Header() {
-    return (
-      <>
-        <header className="header1">
-          <h1 id="appName" >App name</h1>
-        </header>
-        <style jsx>{`
-       
-        `}</style>
-      </>
-    );
-  }
+  return (
+    <>
+      <header className="header1">
+        <h1 id="appName" >App name</h1>
+      </header>
+    </>
+  );
+}
 
-  function ServiceLink({ text }) {
-    const link = text.toLowerCase().replace(/\s+/g, '-'); // Converts "In-room dining" to "in-room-dining"
-    return (
-      <a href={`/${link}`} className="service-link">
-        {text}
-      </a>
-    );
-  }
-  
-  export default function Dashboard() {
-    const services = ["Housekeeping", "In-room dining", "Order history"];
-    return (
-      <>
-        <Header />
-        <section className="container">
-          <header className="title">Welcome</header>
-          <p className="subtitle">How can we help you?</p>
-          <nav>
-            {services.map((service) => (
-              <ServiceLink key={service} text={service} />
-            ))}
-          </nav>
-        </section>
-        <div className="l">
-      <FloatingWidget/>
+function ServiceLink({ text }) {
+  const link = text.toLowerCase().replace(/\s+/g, '-'); // Converts "In-room dining" to "in-room-dining"
+  return (
+    <Link to={`/user/${link}`} className="service-link">
+      {text}
+    </Link>
+  );
+}
+
+export default function Dashboard() {
+  const services = ["Housekeeping", "In-room dining", "Order history"];
+  return (
+    <>
+      <Header />
+      <section className="container">
+        <header className="title">Welcome</header>
+        <p className="subtitle">How can we help you?</p>
+        <nav>
+          {services.map((service) => (
+            <ServiceLink key={service} text={service} />
+          ))}
+        </nav>
+      </section>
+      <div className="l">
+        <FloatingWidget />
       </div>
-        <style jsx>{`
-         
-        `}</style>
-      </>
-    );
-  }
-  
+    </>
+  );
+}

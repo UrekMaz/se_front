@@ -59,7 +59,7 @@ function RestaurantSelect() {
   ];
   return (
     <>
-      <a href="/confirmation"><RHeader1 message="Restaurant 1" /></a>
+      <a href="/user/dashboard"><RHeader1 message="Restaurant 1" /></a>
       <RHeader name="user" />
       {restaurants.map((restaurant, index) => (
         <Link key={index} to={`/${restaurant.name}`}>
