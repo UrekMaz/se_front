@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './LoginForm.css';
+import '../Restaurant/LoginForm.css';
 
 function LabelInputRow({ label, inputType, inputId, placeholder, value, onChange }) {
   return (
@@ -22,7 +22,7 @@ function LabelInputRow({ label, inputType, inputId, placeholder, value, onChange
   );
 }
 
-function RestoLogin() {
+function HousekeeperLogin() {
   const [idNumber, setIdNumber] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -30,14 +30,14 @@ function RestoLogin() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/restaurant/login', { // Updated endpoint
-      hotelId:"hotel123",  
+      const response = await axios.post('http://localhost:5000/housekeeper/login', { // Updated endpoint
+      hotelId:'hotel123',  
       userId: idNumber,
         password,
       });
       console.log(response.data);
       if (response.status === 200) {
-        navigate('/restaurant/restaurant-pending'); // Updated navigation route
+        navigate('/housekeeper/pending-tasks'); // Updated navigation route
       } else {
         alert(response.data.message);
       }
@@ -80,4 +80,4 @@ function RestoLogin() {
   );
 }
 
-export default RestoLogin;
+export default HousekeeperLogin;

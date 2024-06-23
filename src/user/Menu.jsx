@@ -73,7 +73,7 @@ function Menu() {
 
   return (
     <>
-    <a href="/in-room-dining"><div class="h"><RHeader1 message="Restaurant 1"/></div></a>
+    <a href="/user/in-room-dining"><div class="h"><RHeader1 message="Restaurant 1"/></div></a>
       <section className="menu-section">
 
         <h2 className="menu-heading">Starters</h2>

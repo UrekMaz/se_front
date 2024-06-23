@@ -63,7 +63,7 @@ function ProductItem({ imageSrc, altText, title, quantity, price }) {
 function OrderConfirmation() {
 const[confirm,setConfirm]=React.useState(false);
 
-const rendered = confirm ? <a href="/confirmation"><div className="x"><OrderSection className="x" message="Done"/></div></a>: <OrderSection message="Confirm"/>;
+const rendered = confirm ? <a href="/user/dashboard"><div className="x"><OrderSection className="x" message="Done"/></div></a>: <OrderSection message="Confirm"/>;
 function confirmed()
 {
     setConfirm(true);
@@ -91,7 +91,7 @@ function confirmed()
     <>
     {/*the linking here is not correct- need to link to previous restaurant name*/}
     {confirm?<ConfirmationMessage/>:null}
-    <a href="/in-room-dining"><RHeader1 message="Order confirmation"/></a>
+    <a href="/user/in-room-dining"><RHeader1 message="Order confirmation"/></a>
       {products.map((product, index) => (
         <ProductItem
           key={index}
