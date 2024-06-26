@@ -43,6 +43,7 @@ import Assign_task from './assets/master/Assign_task.jsx';
 import InRoomDining from './assets/master/InRoomDining.jsx';
 import HousekeeperLogin from './assets/HouseKeeper/Housekeeperlogin.jsx';
 import MasterLogin from './assets/master/MasterLogin.jsx';
+import HousekeepingComponent from './user/Housekeeping.jsx';
 function App() {
     return (
         <Router>
@@ -84,11 +85,11 @@ function App() {
 
                 {/* User */}
                 <Route path="/user/dashboard" element={<Dashboard />} />
-                <Route path="/user/in-room-dining" element={<RestaurantSelect />} />
-                <Route path="/user/order-history" element={<OrderHistory />} />
-                <Route path="/:restaurantName" element={<Menu />} />
-                <Route path="/confirm" element={<OrderConfirmation />} />
-                <Route path="/user/housekeeping" element={<Housekeeping />} />
+                <Route path="/user/in-room-dining/:hotelId/:userId" element={<RestaurantSelect />} />
+                <Route path="/user/orderhistory/:userId" element={<OrderHistory />} />
+                <Route path="/user/in-room-dining/:hotelId/:restoId/:userId" element={<Menu />} />
+                <Route path="/user/orderconfirmation/:hotelId/:restoId/:userId/:orderId" element={<OrderConfirmation />} />
+                <Route path="/user/housekeeping/:hotelId/:userId" element={<HousekeepingComponent />} />
                 {/* Restaurant */}
                 <Route path="/restaurant/login" element={<RestoLogin/>} />
                 <Route path="/restaurant/edit-menu" element={<RestoEditMenu/>} />

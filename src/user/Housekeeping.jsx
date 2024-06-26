@@ -1,21 +1,29 @@
-import RHeader1 from "./R1header";
-import OrderSection from "./OrderSection";
-import * as React from "react";
-import "./css/HouseKeeper.css"
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import RHeader1 from './R1header';
+import OrderSection from './OrderSection';
+import './css/HouseKeeper.css';
+import { useParams, useNavigate } from "react-router-dom";
 
+// ServiceCard component
+function ServiceCard({ id, imgSrc, altText, serviceName, price, onSelect }) {
+  const [count, setCount] = useState(0);
 
- function ServiceCard ( { imgSrc, altText, serviceName, price }) {
-    
-const [count,setCount]=React.useState(0);
-function increment()
-{
-    setCount(count+1)
-}
-function decrement()
-{
-    setCount(count-1)
-}
-    return(
+  const increment = () => {
+    const newCount = count + 1;
+    setCount(newCount);
+    onSelect({ id, imgSrc, altText, serviceName, price, quantity: newCount });
+  };
+
+  const decrement = () => {
+    if (count > 0) {
+      const newCount = count - 1;
+      setCount(newCount);
+      onSelect({ id, imgSrc, altText, serviceName, price, quantity: newCount });
+    }
+  };
+
+  return (
     <div className="service-card">
       <img loading="lazy" src={imgSrc} alt={altText} className="service-image" />
       <div className="service-details">
@@ -24,20 +32,19 @@ function decrement()
           <p className="service-price">{price}</p>
         </div>
         <div className="left">
-         <button className="card-button" onClick={increment}>
-         
+          <button className="card-button" onClick={increment}>
+          
             <img
               loading="lazy"
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/32cc2612e7adc6c66ba5a5e9d2c070a8e2dde5276b5648db249eb08fb01506ab?apiKey=e0ca87f5e1974e589ad51a28eed298e2&"
-              alt="increment"
+              alt=""
               className="card-icon"
             />
           </button>
-          
-          {count===0?null:<div className="up"><p>{count}</p></div>}
-          {count===0?null:
-          <button className="card-button" onClick={decrement}>
-          <svg
+          {count === 0 ? null : <div className="up"><p>{count}</p></div>}
+          {count === 0 ? null :
+            <button className="card-button" onClick={decrement}>
+            <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
@@ -53,35 +60,100 @@ function decrement()
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                 <line x1="8" y1="12" x2="16" y2="12"></line>
               </svg>
-          </button>
+
+            </button>
           }
-          </div>
+        </div>
       </div>
-    </div>)
- }
-  
-  export default function Housekeeping() {
-    const services = [
-      { imgSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/e6cdfbf4b9522844197506e51c7c7aa6c4d948a5b2932ee1b366c1bf2d224ad4?apiKey=e0ca87f5e1974e589ad51a28eed298e2&', altText: '', serviceName: 'Extra towel', price: '₹0' },
-      { imgSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/7ba8d1a78ff1eb6ae06d53ee649c3292d840d8a8843bb66a0767996b09b2c318?apiKey=e0ca87f5e1974e589ad51a28eed298e2&', altText: '', serviceName: 'Extra mattress', price: '₹0' },
-      { imgSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/9f5053291734a3d8ce8e42941a00e20999bb2d3e6bac215d88fe0acad887be8a?apiKey=e0ca87f5e1974e589ad51a28eed298e2&', altText: '', serviceName: 'Clean room', price: '₹0' },
-      { imgSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/9f5053291734a3d8ce8e42941a00e20999bb2d3e6bac215d88fe0acad887be8a?apiKey=e0ca87f5e1974e589ad51a28eed298e2&', altText: '', serviceName: 'Need help with the TV', price: '₹250' },
-      { imgSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/9f5053291734a3d8ce8e42941a00e20999bb2d3e6bac215d88fe0acad887be8a?apiKey=e0ca87f5e1974e589ad51a28eed298e2&', altText: '', serviceName: 'Something broken?', price: '₹250' },
-      { imgSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/9f5053291734a3d8ce8e42941a00e20999bb2d3e6bac215d88fe0acad887be8a?apiKey=e0ca87f5e1974e589ad51a28eed298e2&', altText: '', serviceName: 'Ac remote', price: '₹250' }
-    ];
-  
-    return (
-      <>
-      <a href="/user/dashboard"><div className="h"><RHeader1 message={"Housekeeping"}/></div></a>
+    </div>
+  );
+}
+
+// Housekeeping component
+function Housekeeping() {
+  const navigate = useNavigate();
+  const [services, setServices] = useState([]);
+  const [selectedItems, setSelectedItems] = useState([]);
+  const { hotelId, userId } = useParams();
+  const [p, setP] = useState(false);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/user/housekeeping/${hotelId}/${userId}`);
+        setServices(response.data);
+      } catch (error) {
+        console.error('Error fetching housekeeping services:', error);
+      }
+    };
+
+    fetchServices();
+  }, [hotelId, userId]);
+
+  const change = () => {
+ 
+setP(true);
+  };
+
+  const handleSelectItem = (service) => {
+    setSelectedItems(prevItems => {
+      const updatedItems = [...prevItems];
+      const selectedItemIndex = updatedItems.findIndex(item => item.serviceName === service.serviceName);
+
+      if (selectedItemIndex !== -1) {
+        if (service.quantity > 0) {
+          updatedItems[selectedItemIndex] = service;
+        } else {
+          updatedItems.splice(selectedItemIndex, 1);
+        }
+      } else if (service.quantity > 0) {
+        updatedItems.push(service);
+      }
+
+      console.log("Updated selected items:", updatedItems); // Debugging line
+      return updatedItems;
+    });
+  };
+
+  const handleSubmitOrder = async (event) => {
+    event.preventDefault();
+    if(p){
+    try {
+      console.log("Items being submitted:", selectedItems); // Debugging line to check items before submission
+      const payload = { items: selectedItems };
+      const response = await axios.post(`http://localhost:5000/user/housekeeping/${hotelId}/${userId}`, payload);
+      console.log('Order submitted successfully:', response.data);
+      navigate("/user/dashboard")
+     
+    } catch (error) {
+      console.error('Error submitting order:', error);
+    }}
+  };
+
+  return (
+    <>
+      <a href="/user/dashboard"><div className="h"><RHeader1 message={"Housekeeping"} /></div></a>
+      <form onSubmit={handleSubmitOrder}>
         <section className="services-1">
           {services.map((service, index) => (
-            <ServiceCard key={index} {...service} />
+            <ServiceCard
+              key={index}
+              id={service.id}
+              imgSrc={service.imgSrc}
+              altText={service.altText}
+              serviceName={service.serviceName}
+              price={service.price}
+              onSelect={handleSelectItem}
+            />
           ))}
         </section>
-       <div className="y3">
-       <OrderSection message="Confirm"/>
-       </div>
-        
-      </>
-    );
-  }
+        <div className="y3">
+          
+          <button type="submit" className='order-section' onClick={change}>Submit Order</button>
+        </div>
+      </form>
+    </>
+  );
+}
+
+export default Housekeeping;

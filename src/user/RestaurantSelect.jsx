@@ -1,18 +1,15 @@
-import * as React from "react";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
-import RHeader1 from "./R1header";
-import OrderSection from "./OrderSection";
-import "./css/RestaurantSelect.css"
-function RHeader({name}) {
+import RHeader1 from './R1header';
+import { useParams, useNavigate } from "react-router-dom";
+import './css/RestaurantSelect.css';
+
+function RHeader({ name }) {
   return (
-    <>
-      <section className="intro-section">
-        <h1 className="greeting-title r-header">Hi {name}, pick your restaurant</h1>
-      </section>
-      <style jsx>{`
-      
-      `}</style>
-    </>
+    <section className="intro-section">
+      <h1 className="greeting-title r-header">Hi {name}, pick your restaurant</h1>
+    </section>
   );
 }
 
@@ -34,42 +31,38 @@ const RestaurantCard = ({ name, imgSrc, description, rating, price }) => (
 );
 
 function RestaurantSelect() {
-  const restaurants = [
-    {
-      name: "Restaurant1",
-      imgSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/83c18b6d711e2bb98ffd61f309875a0a91359da41c6b554a943207226c891bbb?apiKey=e0ca87f5e1974e589ad51a28eed298e2&",
-      description: "lakjc aleskcj aweskjc",
-      rating: "Rating?",
-      price: "Price for 2?",
-    },
-    {
-      name: "Restaurant2",
-      imgSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/83c18b6d711e2bb98ffd61f309875a0a91359da41c6b554a943207226c891bbb?apiKey=e0ca87f5e1974e589ad51a28eed298e2&",
-      description: "lakjc aleskcj aweskjc",
-      rating: "Rating?",
-      price: "Price for 2?",
-    },
-    {
-      name: "Restaurant3",
-      imgSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/83c18b6d711e2bb98ffd61f309875a0a91359da41c6b554a943207226c891bbb?apiKey=e0ca87f5e1974e589ad51a28eed298e2&",
-      description: "lakjc aleskcj aweskjc",
-      rating: "Rating?",
-      price: "Price for 2?",
+  const [restaurants, setRestaurants] = useState([]);
+  const { hotelId, userId } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    async function fetchRestaurantData() {
+      try {
+        const response = await axios.get(`http://localhost:5000/user/in-room-dining/${hotelId}/${userId}`);
+        setRestaurants(response.data);
+      } catch (error) {
+        console.error('Error fetching restaurant data:', error);
+      }
     }
-  ];
+
+    fetchRestaurantData();
+  }, [hotelId, userId]);
+
   return (
     <>
       <a href="/user/dashboard"><RHeader1 message="Restaurant 1" /></a>
       <RHeader name="user" />
       {restaurants.map((restaurant, index) => (
-        <Link key={index} to={`/${restaurant.name}`}>
-          <RestaurantCard {...restaurant} />
+        <Link key={index} to={`/user/in-room-dining/${hotelId}/${restaurant.restro_id}/${userId}`}>
+          <RestaurantCard 
+            name={restaurant.name}
+            imgSrc={restaurant.imgSrc}
+            description={restaurant.description}
+            rating={restaurant.rating}
+            price={restaurant.price}
+          />
         </Link>
       ))}
-      
-      <style jsx>{`
-        
-      `}</style>
     </>
   );
 }
