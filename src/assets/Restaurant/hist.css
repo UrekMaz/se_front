@@ -1,8 +1,8 @@
-/* import "./MyComponent.css"; */
 .container {
   display: flex;
   max-width: 375px;
   flex-direction: column;
+  margin: 0 auto;
 }
 
 .search-section {
@@ -14,6 +14,7 @@
   font-weight: 400;
   white-space: nowrap;
   line-height: 150%;
+  margin-bottom: 16px; /* Added margin to separate search section from orders */
 }
 
 .search-bar {
@@ -48,59 +49,71 @@
   flex-direction: column;
   font-size: 14px;
   font-weight: 500;
-  margin-top: 14px;
   width: 100%;
 }
 
 .orders-header {
   display: flex;
-  gap: 20px;
   background-color: var(--Secondary, #cdeacf);
   color: #828282;
   white-space: nowrap;
   line-height: 140%;
   padding: 10px 32px;
+  border-radius: 8px 8px 0 0;
 }
 
-.header-item {
+.header-room,
+.header-item,
+.header-cost,
+.header-time {
   flex: 1;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   font-family: Inter, sans-serif;
+  text-align: left; /* Ensure headers are aligned to the left */
 }
 
 .orders-list {
   display: flex;
   flex-direction: column;
   color: var(--Black, #222);
+  border: 1px solid rgba(224, 224, 224, 1);
+  border-top: none; /* Remove top border as it is already provided by header */
+  border-radius: 0 0 8px 8px; /* Rounded corners for the bottom part */
 }
 
 .order-item {
   display: flex;
-  gap: 20px;
   padding: 10px 32px;
   border-top: 1px solid rgba(224, 224, 224, 1);
+  align-items: center; /* Ensure items are centered vertically */
+}
+
+.order-room,
+.order-name,
+.order-cost,
+.order-time {
+  flex: 1;
+  font-family: Inter, sans-serif;
+  line-height: 20px;
+  text-align: left; /* Ensure content is aligned to the left */
+}
+
+.order-room {
+  width: 60px; /* Fixed width for room ID */
 }
 
 .order-name {
-  flex-grow: 1;
-  font-family: Inter, sans-serif;
-  line-height: 20px;
+  flex-grow: 2;
 }
 
 .order-cost {
+  width: 80px; /* Fixed width for cost */
   text-align: right;
-  flex-basis: auto;
-  font-family: Inter, sans-serif;
-  line-height: 140%;
-  align-self: stretch;
-  margin: auto 0;
 }
 
 .order-time {
-  color: #828282;
-  font-family: Inter, sans-serif;
-  margin: auto 0;
-  padding: 8px 1px;
+  width: 120px; /* Fixed width for time */
+  text-align: right;
 }

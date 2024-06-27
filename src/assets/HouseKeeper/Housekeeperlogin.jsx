@@ -37,7 +37,7 @@ function HousekeeperLogin() {
       });
       console.log(response.data);
       if (response.status === 200) {
-        navigate('/housekeeper/pending-tasks'); // Updated navigation route
+        navigate(`/housekeeper/pending-tasks?hotelId=hotel123&userId=${idNumber}`); // Updated navigation route
       } else {
         alert(response.data.message);
       }
