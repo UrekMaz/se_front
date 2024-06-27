@@ -21,8 +21,9 @@ function ImageComponent() {
 
 function FloatingWidget() {
   const handleClick = () => {
+    const phoneNumber = '8976023649';  // Replace with the phone number you want to call
+        window.location.href = `tel:${phoneNumber}`;
     
-    alert('Widget clicked!');
   };
 
   return (

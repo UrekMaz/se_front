@@ -28,7 +28,7 @@ export default function RHeader1({message}) {
             line-height: 130%;
             justify-content: center;
             padding: 0 19px; /* Removed vertical padding to fit the specified height */
-            
+            width:360px;
           }
   
           .restaurant-info1 {
@@ -58,3 +58,7 @@ export default function RHeader1({message}) {
       </>
     );
   }
+
+
+
+  
