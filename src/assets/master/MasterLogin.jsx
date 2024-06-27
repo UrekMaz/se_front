@@ -37,7 +37,7 @@ function MasterLogin() {
       });
       console.log(response.data);
       if (response.status === 200) {
-        navigate('/master/home'); // Updated navigation route
+        navigate(`/master/home?hotelId=hotel123&userId=${idNumber}`); // Updated navigation route
       } else {
         alert(response.data.message);
       }

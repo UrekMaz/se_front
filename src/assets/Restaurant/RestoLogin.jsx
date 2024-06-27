@@ -37,7 +37,7 @@ function RestoLogin() {
       });
       console.log(response.data);
       if (response.status === 200) {
-        navigate('/restaurant/restaurant-pending'); // Updated navigation route
+        navigate(`/restaurant/restaurant-pending?hotelId=hotel123&userId=${idNumber}`); // Updated navigation route
       } else {
         alert(response.data.message);
       }
