@@ -97,7 +97,7 @@ function App() {
                 <Route path="/user/orderhistory/:userId" element={<OrderHistory />} />
                 <Route path="/user/in-room-dining/:hotelId/:restoId/:userId" element={<Menu />} />
                 <Route path="/user/orderconfirmation/:hotelId/:restoId/:userId/:orderId" element={<OrderConfirmation />} />
-                <Route path="/user/housekeeping/:hotelId/:userId" element={<HousekeepingComponent />} />
+                <Route path="/user/housekeeping/:hotelId/:userId" element={<Housekeeping />} />
                 {/* Restaurant */}
                 <Route path="/restaurant/login" element={<RestoLogin/>} />
                 <Route path="/restaurant/edit-menu" element={<RestoEditMenu/>} />
