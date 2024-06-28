@@ -13,12 +13,12 @@ import Rooms from './assets/Manager/Rooms.jsx';
 import TaskDetailManager from './assets/Manager/TaskDetail.jsx';
 import TaskHistoryManager from './assets/Manager/TaskHistory.jsx';
 import PendingTaskManager from './assets/Manager/PendingTask.jsx';
-
+import BillingManager from './assets/Manager/billingManager.jsx';
 // Master
 import Home from './assets/master/Home.jsx';
 import RestoPending from './assets/master/RestoPending.jsx';
 import Billing from './assets/master/billing.jsx';
-
+import RoomsT from './assets/master/Rooms.jsx'
 // User
 import Dashboard from './user/Dashboard2';
 import RestaurantSelect from './user/RestaurantSelect';
@@ -73,7 +73,7 @@ function App() {
                 <Route path="/edit-menu" element={<Edit_Menu/>} />
                 <Route path="/task-assign" element={<Assign_task/>} />
                 <Route path="/in-room-dining-history" element={<InRoomDining/>} />
-
+                <Route path="/roomsMaster" element={<RoomsT/>} />
 
                 {/* Manager */}
                 <Route path="/manager/login" element={<ManagerLogin/>} />
@@ -81,7 +81,7 @@ function App() {
                 <Route path="/manager/task-detail" element={<TaskDetail hamburger = "manager"/>} />
                 <Route path="/manager/task-history" element={<TaskHistory hamburger = "manager"/>} />
                 <Route path="/manager/pending-tasks" element={<PendingTask hamburger = "manager" />} />
-
+                <Route path="/billingManager" element={<BillingManager />} />
                 {/* User */}
                 <Route path="/user/dashboard" element={<Dashboard />} />
                 <Route path="/user/in-room-dining" element={<RestaurantSelect />} />

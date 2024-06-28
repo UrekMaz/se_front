@@ -30,7 +30,7 @@ function ManagerLogin() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/manager/login', { // Updated endpoint
+      const response = await axios.post('http://localhost:3000/manager/login', { // Updated endpoint
       hotelId:"hotel123",  
       userId: idNumber,
         password,

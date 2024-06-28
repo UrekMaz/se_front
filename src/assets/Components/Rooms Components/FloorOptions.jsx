@@ -20,7 +20,7 @@ function StatusButton({ status, isActive, onClick, children, altText }) {
 }
 
 function FloorOptions() {
-  const [activeButtons, setActiveButtons] = React.useState(['Occupied']);
+  const [activeButtons, setActiveButtons] = React.useState(['']);
 
   const handleButtonClick = (status) => {
     setActiveButtons((prevActiveButtons) => {
