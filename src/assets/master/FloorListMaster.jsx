@@ -19,7 +19,7 @@ function FloorSection({ floor, numbers, onRoomClick }) {
   );
 }
 
-function FloorList() {
+function FloorListMaster() {
   const [floorData, setFloorData] = useState([]);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ function FloorList() {
   }, []);
 
   const handleRoomClick = (roomNumber) => {
-    window.location.href = `/billingManager?room=${roomNumber}`;
+    window.location.href = `/billing?room=${roomNumber}`;
   };
 
   return (
@@ -64,4 +64,4 @@ function FloorList() {
   );
 }
 
-export default FloorList;
+export default FloorListMaster;

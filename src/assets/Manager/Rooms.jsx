@@ -11,7 +11,7 @@ function Rooms() {
         <TopNavBar name="Room Service" />
         <FloorOptions />
         <FloorList />
-        <FloorList />
+        {/* <FloorList /> */}
         {/* <h1>It is working</h1> */}
       </>
   );

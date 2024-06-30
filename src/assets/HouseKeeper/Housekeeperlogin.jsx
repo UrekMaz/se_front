@@ -30,7 +30,7 @@ function HousekeeperLogin() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/housekeeper/login', { // Updated endpoint
+      const response = await axios.post('http://localhost:3000/housekeeper/login', { // Updated endpoint
       hotelId:'hotel123',  
       userId: idNumber,
         password,
