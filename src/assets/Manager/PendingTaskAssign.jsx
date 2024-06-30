@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
-import "./Assign_tasks.css";
+import "./stylePendingTask.css";
 import TopNavBar from "../Components/TopNavBar";
 
 function Task({ task, assignees, onAssignChange, onCheckboxChange, onTextClick }) {
   // Function to extract time from the datetime string
-  const formatTime = (timeString) => {
-    const [hours, minutes, seconds] = timeString.split(':');
-    const date = new Date();
-    date.setHours(hours, minutes, seconds);
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+  const formatTime = (dateTime) => {
+    const date = new Date(dateTime);
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
 
   return (
     <div className="task-container" onClick={() => onTextClick(task)}>
-      <div className="task-time">{formatTime(task.time_of_order)}</div>
+      <div className="task-time">{task.time_of_order}</div>
       <div className="task-content">
         <div className="task-number">
           <strong>{task.roomId}<br /><br/>
@@ -45,7 +43,7 @@ function Task({ task, assignees, onAssignChange, onCheckboxChange, onTextClick }
   );
 }
 
-function Assign_task({ hamburger }) {
+function PendingTaskAssign({ hamburger }) {
   const [tasks, setTasks] = useState([]);
   const [assignees, setAssignees] = useState([]);
   const location = useLocation();
@@ -66,7 +64,7 @@ function Assign_task({ hamburger }) {
           // Sort by not allotted first and then by time (newest first)
           if (!a.assigned_to?.user_id && b.assigned_to?.user_id) return -1;
           if (a.assigned_to?.user_id && !b.assigned_to?.user_id) return 1;
-          return new Date(`1970-01-01T${b.time_of_order}Z`) - new Date(`1970-01-01T${a.time_of_order}Z`);
+          return new Date(b.time_of_order) - new Date(a.time_of_order);
         });
 
         setTasks(sortedTasks);
@@ -111,7 +109,7 @@ function Assign_task({ hamburger }) {
 
   return (
     <div className="main-container">
-      <TopNavBar name="Assign tasks" hamburger= "master" />
+      <TopNavBar name="Pending tasks" hamburger={hamburger} />
       <section className="tasks-section">
         {tasks.map((task, index) => (
           <Task
@@ -128,4 +126,4 @@ function Assign_task({ hamburger }) {
   );
 }
 
-export default Assign_task;
+export default PendingTaskAssign;

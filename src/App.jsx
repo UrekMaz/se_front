@@ -12,13 +12,26 @@ import Login from "./assets/HouseKeeper/login.jsx";
 import Rooms from './assets/Manager/Rooms.jsx';
 import TaskDetailManager from './assets/Manager/TaskDetail.jsx';
 import TaskHistoryManager from './assets/Manager/TaskHistory.jsx';
-import PendingTaskManager from './assets/Manager/PendingTask.jsx';
+
+// import PendingTaskManager from './assets/Manager/PendingTask.jsx';
 import BillingManager from './assets/Manager/billingManager.jsx';
+
+import PendingTaskAssign from './assets/Manager/PendingTaskAssign.jsx';
+
+
 // Master
 import Home from './assets/master/Home.jsx';
 import RestoPending from './assets/master/RestoPending.jsx';
 import Billing from './assets/master/billing.jsx';
+
 import RoomsT from './assets/master/Rooms.jsx'
+
+import Assign_task from './assets/master/Assign_task.jsx';
+import InRoomDining from './assets/master/InRoomDining.jsx';
+import HousekeeperLogin from './assets/HouseKeeper/Housekeeperlogin.jsx';
+import MasterLogin from './assets/master/MasterLogin.jsx';
+
+
 // User
 import Dashboard from './user/Dashboard2';
 import RestaurantSelect from './user/RestaurantSelect';
@@ -39,10 +52,15 @@ import ManagerLogin from './assets/Manager/ManagerLogin.jsx';
 
 import Edit_Menu from './assets/master/Menu_edit.jsx';
 
-import Assign_task from './assets/master/Assign_task.jsx';
-import InRoomDining from './assets/master/InRoomDining.jsx';
-import HousekeeperLogin from './assets/HouseKeeper/Housekeeperlogin.jsx';
-import MasterLogin from './assets/master/MasterLogin.jsx';
+// <<<<<<< hrishikeshSide
+
+// =======
+// import Assign_task from './assets/master/Assign_task.jsx';
+// import InRoomDining from './assets/master/InRoomDining.jsx';
+// import HousekeeperLogin from './assets/HouseKeeper/Housekeeperlogin.jsx';
+// import MasterLogin from './assets/master/MasterLogin.jsx';
+// import HousekeepingComponent from './user/Housekeeping.jsx';
+// >>>>>>> main
 function App() {
     return (
         <Router>
@@ -67,28 +85,33 @@ function App() {
                 <Route path="/task-detail" element={<TaskDetail />} />
                 <Route path="/master/task-history" element={<TaskHistory hamburger="master"/>} />
                 <Route path="/billing" element={<Billing />} />
-                <Route path="/resto-pending" element={<RestoPending />} />
+                <Route path="/master/resto-pending" element={<RestoPending />} />
                 <Route path="/master/login" element={<MasterLogin/>} />
                 <Route path="/master/home" element={<Home />} />
                 <Route path="/edit-menu" element={<Edit_Menu/>} />
-                <Route path="/task-assign" element={<Assign_task/>} />
+                <Route path="/task-assign" element={<Assign_task hamburger = "master"/>} />
                 <Route path="/in-room-dining-history" element={<InRoomDining/>} />
                 <Route path="/roomsMaster" element={<RoomsT/>} />
 
                 {/* Manager */}
                 <Route path="/manager/login" element={<ManagerLogin/>} />
                 <Route path="/manager/rooms" element={<Rooms hamburger = "manager"/>} />
-                <Route path="/manager/task-detail" element={<TaskDetail hamburger = "manager"/>} />
+                <Route path="/manager/task-detail" element={<TaskDetailManager hamburger = "manager"/>} />
                 <Route path="/manager/task-history" element={<TaskHistory hamburger = "manager"/>} />
-                <Route path="/manager/pending-tasks" element={<PendingTask hamburger = "manager" />} />
+
+//                 <Route path="/manager/pending-tasks" element={<PendingTask hamburger = "manager" />} />
                 <Route path="/billingManager" element={<BillingManager />} />
+
+                <Route path="/manager/pending-tasks" element={<PendingTaskAssign hamburger = "manager" />} />
+
+
                 {/* User */}
                 <Route path="/user/dashboard" element={<Dashboard />} />
-                <Route path="/user/in-room-dining" element={<RestaurantSelect />} />
-                <Route path="/user/order-history" element={<OrderHistory />} />
-                <Route path="/:restaurantName" element={<Menu />} />
-                <Route path="/confirm" element={<OrderConfirmation />} />
-                <Route path="/user/housekeeping" element={<Housekeeping />} />
+                <Route path="/user/in-room-dining/:hotelId/:userId" element={<RestaurantSelect />} />
+                <Route path="/user/orderhistory/:userId" element={<OrderHistory />} />
+                <Route path="/user/in-room-dining/:hotelId/:restoId/:userId" element={<Menu />} />
+                <Route path="/user/orderconfirmation/:hotelId/:restoId/:userId/:orderId" element={<OrderConfirmation />} />
+                <Route path="/user/housekeeping/:hotelId/:userId" element={<Housekeeping />} />
                 {/* Restaurant */}
                 <Route path="/restaurant/login" element={<RestoLogin/>} />
                 <Route path="/restaurant/edit-menu" element={<RestoEditMenu/>} />

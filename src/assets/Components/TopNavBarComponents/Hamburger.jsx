@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link , useLocation} from 'react-router-dom';
 import './Hamburger.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 function Hamburger() {
     const [menuOpen, setMenuOpen] = useState(false);
-
+    const location = useLocation();
+    
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     }
 
+    const queryParams = location.search;
+
     const navItems = [
-        { path: "/manager/pending-tasks", label: "Pending tasks" },
-        { path: "/manager/task-history", label: "Task history" },
-        { path: "/manager/rooms", label: "Rooms" },
-        { path: "/login_h", label: "Logout from _____" }
+        { path: `/manager/pending-tasks${queryParams}`, label: "Pending tasks" },
+        { path: `/manager/task-history${queryParams}`, label: "Task history" },
+        { path: `/manager/rooms${queryParams}`, label: "Rooms" },
+        { path: `/login_h${queryParams}`, label: "Logout from _____" }
     ];
+
 
     return (
         <div>
@@ -46,20 +50,23 @@ function Hamburger() {
 }
 function HamburgerMaster() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const location = useLocation();
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     }
 
-    const navItems = [
-        { path: "/edit-menu", label: "Temporarily edit menu" },
-        { path: "/task-assign", label: "Pending tasks" },
-        { path: "/billing", label: "Billing" },
-        { path: "/master/task-history", label: "Task history"},
-        { path: "/in-room-dining-history", label: "In-room dining history" },
-        { path: "/logout", label: "Logout from _____" }
-    ];
+    const queryParams = location.search;
 
+    const navItems = [
+        { path: `/edit-menu${queryParams}`, label: "Temporarily edit menu" },
+        { path: `/task-assign${queryParams}`, label: "Pending tasks" },
+        { path: `/billing${queryParams}`, label: "Billing" },
+        { path: `/master/task-history${queryParams}`, label: "Task history" },
+        { path: `/master/resto-pending${queryParams}`, label: "Restaurant Pending" },
+        { path: `/in-room-dining-history${queryParams}`, label: "In-room dining history" },
+        { path: `/logout${queryParams}`, label: "Logout from _____" }
+    ];
     return (
         <div>
             <button 
@@ -88,21 +95,19 @@ function HamburgerMaster() {
 }
 function HamburgerRestaurant() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const location = useLocation();
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
-    }
-//     const navItems = [
-//         { path: "/restaurant-pending", label: "Pending orders" },
-//         { path: "/resto-edit-menu", label: "Edit Menu" },
-//         { path: "/resto-order-history", label: "History" },
-//         { path: "/resto-login", label: "Logout from _____" }
-//     ];
+    };
+
+    const queryParams = location.search;
+
     const navItems = [
-        { path: "/restaurant/restaurant-pending", label: "Pending orders" },
-        { path: "/restaurant/edit-menu", label: "Edit Menu" },
-        { path: "/restaurant/order-history", label: "Order History" },
-        { path: "/restaurant/login", label: "Logout from_____"}
+        { path: `/restaurant/restaurant-pending${queryParams}`, label: "Pending orders" },
+        { path: `/restaurant/edit-menu${queryParams}`, label: "Edit Menu" },
+        { path: `/restaurant/order-history${queryParams}`, label: "Order History" },
+        { path: `/restaurant/login${queryParams}`, label: "Logout from_____" }
     ];
 
     return (
@@ -131,17 +136,21 @@ function HamburgerRestaurant() {
         </div>
     );
 }
+
 function HamburgerHousekeeper() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const location = useLocation();
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
-    }
+    };
+
+    const queryParams = location.search;
 
     const navItems = [
-        { path: "/housekeeper/pending-tasks", label: "Pending tasks" },
-        { path: "/housekeeper/task-history", label: "Task history" },
-        { path: "/login_h", label: "Logout from _____" }
+        { path: `/housekeeper/pending-tasks${queryParams}`, label: "Pending tasks" },
+        { path: `/housekeeper/task-history${queryParams}`, label: "Task history" },
+        { path: `/login_h${queryParams}`, label: "Logout from _____" }
     ];
 
     return (

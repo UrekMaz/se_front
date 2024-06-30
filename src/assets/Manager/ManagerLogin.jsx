@@ -5,14 +5,14 @@ import '../Restaurant/LoginForm.css';
 
 function LabelInputRow({ label, inputType, inputId, placeholder, value, onChange }) {
   return (
-    <div className="input-row">
-      <label htmlFor={inputId} className="input-label">
+    <div className='input-row'>
+      <label htmlFor={inputId} className='input-label'>
         {label}
       </label>
       <input
         type={inputType}
         id={inputId}
-        className="input-field"
+        className='input-field'
         placeholder={placeholder}
         aria-label={label}
         value={value}
@@ -30,14 +30,20 @@ function ManagerLogin() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/manager/login', { // Updated endpoint
-      hotelId:"hotel123",  
-      userId: idNumber,
+
+//       const response = await axios.post('http://localhost:3000/manager/login', { // Updated endpoint
+//       hotelId:"hotel123",  
+//       userId: idNumber,
+
+      const response = await axios.post('http://localhost:5000/manager/login', {
+        hotelId: 'hotel123',
+        userId: idNumber,
+
         password,
       });
       console.log(response.data);
       if (response.status === 200) {
-        navigate('/manager/pending-tasks'); // Updated navigation route
+        navigate(`/manager/pending-tasks?hotelId=hotel123&userId=${idNumber}`); // Update URL without userId parameter
       } else {
         alert(response.data.message);
       }
@@ -48,30 +54,30 @@ function ManagerLogin() {
   };
 
   return (
-    <section className="login-section">
+    <section className='login-section'>
       <header>
-        <h1 className="app-name">App name</h1>
+        <h1 className='app-name'>App name</h1>
       </header>
-      <main className="login-main">
-        <h2 className="login-title">Login</h2>
-        <form className="login-form" onSubmit={handleSubmit}>
+      <main className='login-main'>
+        <h2 className='login-title'>Login</h2>
+        <form className='login-form' onSubmit={handleSubmit}>
           <LabelInputRow
-            label="Enter your ID number to login"
-            inputType="text"
-            inputId="idNumber"
-            placeholder="12345678"
+            label='Enter your ID number to login'
+            inputType='text'
+            inputId='idNumber'
+            placeholder='12345678'
             value={idNumber}
             onChange={(e) => setIdNumber(e.target.value)}
           />
           <LabelInputRow
-            label="Enter password"
-            inputType="password"
-            inputId="password"
-            placeholder="Password"
+            label='Enter password'
+            inputType='password'
+            inputId='password'
+            placeholder='Password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="login-btn" type="submit">
+          <button className='login-btn' type='submit'>
             Login
           </button>
         </form>

@@ -1,97 +1,114 @@
 .orders-container {
-    display: flex;
-    max-width: 480px;
-    width: 100%;
-    flex-direction: column;
-    margin: 0 auto;margin-left: 30px;
+  display: flex;
+  max-width: 480px;
+  width: 100%;
+  flex-direction: column;
+  margin: 0 auto;
+  height: max-content;
+  padding: 16px; /* Added padding to the container */
+}
 
-  }
+.order-card {
+  /* border-radius: 12px; */
+  border: 1px solid rgba(205, 234, 207, 1);
+  display: flex;
+  flex-direction: column;
+  /* padding: 16px; Added padding inside the card */
+  margin-top: 24px;
+  font-weight: 500;
+  width: 100%; /* Ensure the card takes full width */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Added box shadow for better visual separation */
+}
 
-  .order-card {
-    border-radius: 12px;
-    border: 1px solid rgba(205, 234, 207, 1);
-    display: flex;
-    flex-direction: column;
-    padding: 0 0px 12px;
-    margin-top: 24px;
-    font-weight: 500;
-    width:327px;
-  }
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 12px 12px 0 0;
+  background-color: var(--Primary, #0d3f20);
+  /* padding: 12px 24px; Increased padding for better spacing */
+  color: var(--White, #f9f9f9);
+  font-size: 18px;
+  font-weight: 700;
+  white-space: nowrap;
+  letter-spacing: -0.18px;
+  line-height: 150%;
+}
 
-  .order-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 12px 12px 0 0;
-    background-color: var(--Primary, #0d3f20);
-    padding: 8px 24px;
-    color: var(--White, #f9f9f9);
-    font-size: 18px;
-    font-weight: 700;
-    white-space: nowrap;
-    letter-spacing: -0.18px;
-    line-height: 150%;
-  }
+.order-number {
+  font-family: Inter, sans-serif;
+}
 
-  .order-number {
-    font-family: Inter, sans-serif;
-  }
+.order-checkbox {
+  width: 20px;
+  height: 20px;
+  margin-left: 16px;
+}
+.order-checkbox:checked {
+  background-color: green;
+}
+.order-checkbox:checked::after {
+  content: '\2714'; /* Unicode checkmark character */
+  font-size: 14px;
+  position: absolute;
+  top: 0px;
+  bottom: 2px;
+  left: 3px;
+  color: #fff;
+}
+.order-items {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 12px;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 22px;
+}
 
-  .order-image {
-    aspect-ratio: 1;
-    object-fit: cover;
-    object-position: center;
-    width: 24px;
-    margin: auto 0;
-    border: 2px solid rgba(249, 249, 249, 1);
-  }
+.order-details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 12px;
+  margin-top: 10px;
+  font-weight: bold;
+}
 
-  .order-items,
-  .order-cost,
-  .order-time {
-    color: var(--Black, #222);
-    margin-top: 10px;
-    font: 14px/20px Inter, sans-serif;
-    
-    display:flex;
-    justify-content:flex-start;
-    margin-left:12px;
-    margin-bottom:0px;
-    font-weight:bold;
+.order-cost,
+.order-time {
+  color: var(--Black, #222);
+  font: 14px/20px Inter, sans-serif;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 0px;
+  margin-top: 25px;
+  padding-top: 25px;
+}
 
-  }
+.order-cost {
+  /* padding-left: 20px; */
+  margin-top: 25px;
+  font: 400 13px/154% Inter, -apple-system, Roboto, Helvetica, sans-serif;
+}
 
-  .order-cost {
-    margin-top: 15px;
-    font: 400 13px/154% Inter, -apple-system, Roboto, Helvetica, sans-serif;
-  }
+.order-time {
+  padding-left: 20px;
+  margin-top: 10px;
+  font: 400 12px/20px Roboto, -apple-system, Roboto, Helvetica, sans-serif;
+  letter-spacing: 0.25px;
+}
 
-  .order-time {
-    margin-top: 10px;
-    font: 400 12px/20px Roboto, -apple-system, Roboto, Helvetica, sans-serif;
-    letter-spacing: 0.25px;
-  }
-
-  .print-button {
-    align-self: end;
-    margin-top: 13px;
-    margin-bottom:12px;
-   
-    padding: 10px 16px;
-    border: 1px solid rgba(13, 63, 32, 1);
-    border-radius: 8px;
-    color: var(--Primary, #0d3f20);
-    font: 14px/140% Inter, sans-serif;
-    background: none;
-    cursor: pointer;
-    margin-right:12px;
-  }
-  .order-items
-  {
-      list-style-type:none;
-      display:flex;
-      justify-content:flex-start;
-      margin-left:12px;
-      margin-top:10px;
-      font-weight:bold;
-  }
+.print-button {
+  align-self: end;
+  margin-top: 13px;
+  margin-bottom: 12px;
+  padding: 10px 16px;
+  border: 1px solid rgba(13, 63, 32, 1);
+  border-radius: 8px;
+  color: var(--Primary, #0d3f20);
+  font: 14px/140% Inter, sans-serif;
+  background: none;
+  cursor: pointer;
+  margin-right: 12px;
+}

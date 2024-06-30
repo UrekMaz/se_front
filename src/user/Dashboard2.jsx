@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import "./css/Dashboard.css"
+import "./css/Dashboard.css";
 import FloatingWidget from "./Floatingwidget";
 
 function ServiceButton({ text }) {
@@ -28,16 +28,21 @@ function ImageComponent() {
 
 function Header() {
   return (
-    <>
-      <header className="header1">
-        <h1 id="appName" >App name</h1>
-      </header>
-    </>
+    <header className="header1">
+      <h1 id="appName">App name</h1>
+    </header>
   );
 }
 
-function ServiceLink({ text }) {
-  const link = text.toLowerCase().replace(/\s+/g, '-'); // Converts "In-room dining" to "in-room-dining"
+function ServiceLink({ text, hotelId, userId }) {
+  let link = text.toLowerCase().replace(/\s+/g, '-');
+  if (link === 'in-room-dining') {
+    link = `in-room-dining/${hotelId}/${userId}`;
+  } else if (link === 'order-history') {
+    link = `orderhistory/${userId}`;
+  } else if (link === 'housekeeping') {
+    link = `housekeeping/${hotelId}/${userId}`; // Adjusted for housekeeping
+  }
   return (
     <Link to={`/user/${link}`} className="service-link">
       {text}
@@ -46,6 +51,8 @@ function ServiceLink({ text }) {
 }
 
 export default function Dashboard() {
+  const hotelId = "hotel123"; 
+  const userId = "1234";
   const services = ["Housekeeping", "In-room dining", "Order history"];
   return (
     <>
@@ -55,7 +62,7 @@ export default function Dashboard() {
         <p className="subtitle">How can we help you?</p>
         <nav>
           {services.map((service) => (
-            <ServiceLink key={service} text={service} />
+            <ServiceLink key={service} text={service} hotelId={hotelId} userId={userId} />
           ))}
         </nav>
       </section>

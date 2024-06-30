@@ -1,25 +1,61 @@
-import * as React from "react";
-import "./RestaurantPending.css"
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+import "./RestaurantPending.css";
 import TopNavBar from '../Components/TopNavBar';
 
-function OrderCard({ orderNumber, imageSrc, items, totalCost, orderTime }) {
+function OrderCard({ order, onCheckboxChange }) {
+  const { user_id, restro, time_of_order, completed } = order;
+
+  const totalCost = restro.reduce((total, restroItem) => {
+    const { menu: { starters = [], main = [], dessert = [] } = {} } = restroItem;
+    return total + starters.concat(main, dessert).reduce((subTotal, item) => subTotal + (item.cost * item.quantity), 0);
+  }, 0);
+
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
     <section className="order-card">
       <header className="order-header">
-        <span className="order-number">{orderNumber}</span>
-        <img loading="lazy" src={imageSrc} alt="" className="order-image" />
+        <span className="order-number">{user_id}</span>
+        <input
+          type="checkbox"
+          className="order-checkbox"
+          checked={completed}
+          onChange={(e) => { e.stopPropagation(); onCheckboxChange(order); }}
+          style={{ backgroundColor: completed ? 'green' : 'white' }} // Change checkmark color
+        />
       </header>
-  
-  {items.map((i, index) => (
-    <div className="order-items" key={index}>{`${i.qty}: ${i.item}`}</div>
-  ))}
-
-
-      <p className="order-cost">Total cost: ₹{totalCost}</p>
-      <p className="order-time">
-        Order placed: <time>{orderTime}</time>
-      </p>
-      <button className="print-button" type="button">
+      {restro.map((restroItem, index) => (
+        <div key={index}>
+          <div className="order-details">
+            <div><strong>Name:</strong> {restroItem.name}</div>
+            <div><strong>Description:</strong> {restroItem.description}</div>
+            <div><strong>Rating:</strong> {restroItem.rating}</div>
+          </div>
+          <div className="order-items">
+            {restroItem.menu.starters.map((item, idx) => (
+              <div key={idx}>{`${item.quantity} ${item.name}`}</div>
+            ))}
+            {restroItem.menu.main.map((item, idx) => (
+              <div key={idx}>{`${item.quantity} ${item.name}`}</div>
+            ))}
+            {restroItem.menu.dessert.map((item, idx) => (
+              <div key={idx}>{`${item.quantity} ${item.name}`}</div>
+            ))}
+          </div>
+        </div>
+      ))}
+      <div className="order-details">
+        <p className="order-cost">Total cost: ₹{totalCost}</p>
+        <br />
+        <p className="order-time">
+          Order placed: <time>{new Date(time_of_order).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</time>
+        </p>
+      </div>
+      <button className="print-button" type="button" onClick={handlePrint}>
         Print
       </button>
     </section>
@@ -27,41 +63,48 @@ function OrderCard({ orderNumber, imageSrc, items, totalCost, orderTime }) {
 }
 
 export default function RestaurantPending() {
-  const orders = [
-    {
-      orderNumber: "123",
-      imageSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/0416a17cf491d00f21e7ef852cf5cdb580d92db75c4649be4ec0a2b3606d57fa?apiKey=e0ca87f5e1974e589ad51a28eed298e2&",
-      items:[{qty:1,item:"Cheese Burger"},{qty:1,item:"Pasta Algio Olio"}],
-      totalCost: 250,
-      orderTime: "3:24 p.m.",
-    },
-    {
-      orderNumber: "124",
-      imageSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/0416a17cf491d00f21e7ef852cf5cdb580d92db75c4649be4ec0a2b3606d57fa?apiKey=e0ca87f5e1974e589ad51a28eed298e2&",
-      items:[{qty:1,item:"Cheese Burger"},{qty:1,item:"Pasta Algio Olio"}],
-      totalCost: 300,
-      orderTime: "4:24 p.m.",
-    },
-    {
-      orderNumber: "125",
-      imageSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/0416a17cf491d00f21e7ef852cf5cdb580d92db75c4649be4ec0a2b3606d57fa?apiKey=e0ca87f5e1974e589ad51a28eed298e2&",
-      items:[{qty:1,item:"Cheese Burger"},{qty:1,item:"Pasta Algio Olio"}],
-      totalCost: 350,
-      orderTime: "5:24 p.m.",
-    },
-  ];
+  const [orders, setOrders] = useState([]);
+  const location = useLocation();
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      const params = new URLSearchParams(location.search);
+      const hotelId = params.get("hotelId");
+
+      try {
+        const response = await axios.get(`http://localhost:5000/restaurant/pending-orders/${hotelId}`);
+        setOrders(response.data);
+      } catch (error) {
+        console.error('Error fetching orders:', error);
+      }
+    };
+
+    fetchOrders();
+  }, [location.search]);
+
+  const handleCheckboxChange = async (order) => {
+    const updatedOrder = { ...order, completed: !order.completed, time_of_completion: new Date().toISOString() };
+
+    try {
+      const response = await axios.put(`http://localhost:5000/restaurant/pending-orders/${order._id}/complete`, { completed: updatedOrder.completed, time_of_completion: updatedOrder.time_of_completion });
+      setOrders(orders.map(o => o._id === order._id ? response.data : o));
+    } catch (error) {
+      console.error('Error updating order completion status:', error);
+    }
+  };
 
   return (
     <>
-    <TopNavBar name="Pending Orders" hamburger="restaurant" />
+      <TopNavBar name="Pending Orders" hamburger="restaurant" />
       <main className="orders-container">
         {orders.map((order, index) => (
-          <OrderCard key={index} {...order} />
+          <OrderCard
+            key={index}
+            order={order}
+            onCheckboxChange={handleCheckboxChange}
+          />
         ))}
       </main>
-      <style jsx>{`
-        
-      `}</style>
     </>
   );
 }

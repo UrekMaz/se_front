@@ -1,103 +1,116 @@
 .intro-section {
-    max-width: 333px;
-  }
-  .greeting-title {
-    color: var(--Black, #222);
-    letter-spacing: -0.69px;
-    font: 700 23px/140% Inter, -apple-system, Roboto, Helvetica, sans-serif;
-  }
+  max-width: 333px;
+}
 
-  .r-header {
-    margin-bottom: 15.38px;
-    margin-left: 17.26px;
-  }
-  .restaurant-card {
-    border-radius: 20px;
-    border: 2px solid rgba(205, 234, 207, 1);
-    background-color: #fff;
-    display: flex;
-    max-width: 340px;
-    width: 340px;
-    flex-direction: column;
-    margin-bottom: 20px;
-    margin-left: 17.26px;
-   
-    
-  }
-  .restaurant-header {
-    background-color: var(--Primary, #0d3f20);
-    width: 295px;
-    border-radius: 20px 20px 0px 0px;
-    color: var(--White, #f9f9f9);
-    letter-spacing: -0.18px;
-    padding: 4px 24px;
-    font: 700 18px/150% Inter, -apple-system, Roboto, Helvetica, sans-serif;
-  }
-  .restaurant-content {
-    display: flex;
-    gap: 20px;
-    color: var(--Black, #222);
-    line-height: 140%;
-    padding: 12px 24px;
-  }
-  .restaurant-image {
-    aspect-ratio: 0.88;
-    object-fit: auto;
-    object-position: center;
-    width: 94px;
-  }
-  .restaurant-info {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 17px 0;
-    gap: 20px; /* Ensures spacing between elements */
-  }
-  .restaurant-description-title {
-    letter-spacing: -0.16px;
-    font: 600 16px/150% Inter, -apple-system, Roboto, Helvetica, sans-serif;
-    text-align: left;
-  }
-  .restaurant-description {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    letter-spacing: -0.24px;
-    margin-top: 4px;
-    font: 400 12px Inter, sans-serif;
-    text-align: left;
-  }
-  .restaurant-details {
-    display: flex;
-    gap: 20px; /* Ensures spacing between rating and price */
-    text-align: left;
-  }
-  .restaurant-rating {
-    letter-spacing: -0.28px;
-    font: 700 14px Inter, sans-serif;
-    text-align: left;
-  }
-  .restaurant-price {
-    letter-spacing: -0.24px;
-    font: 400 12px Inter, sans-serif;
-    text-align: left;
-  }
+.greeting-title {
+  color: var(--Black, #222);
+  letter-spacing: -0.69px;
+  font: 700 23px/140% Inter, -apple-system, Roboto, Helvetica, sans-serif;
+}
 
+.r-header {
+  margin-bottom: 15.38px;
+  margin-left: 17.26px;
+}
 
+.restaurant-card {
+  border-radius: 20px;
+  border: 2px solid rgba(205, 234, 207, 1);
+  background-color: #fff;
+  display: flex;
+  max-width: 340px;
+  width: 340px;
+  flex-direction: column;
+  margin-bottom: 20px;
+  margin-left: 17.26px;
+}
 
+.restaurant-header {
+  background-color: var(--Primary, #0d3f20);
+  width: 295px;
+  border-radius: 20px 20px 0px 0px;
+  color: var(--White, #f9f9f9);
+  letter-spacing: -0.18px;
+  padding: 4px 24px;
+  font: 700 18px/150% Inter, -apple-system, Roboto, Helvetica, sans-serif;
+}
 
+.restaurant-content {
+  display: flex;
+  gap: 20px;
+  color: var(--Black, #222);
+  line-height: 140%;
+  padding: 12px 24px;
+  text-decoration:none;
+}
 
+.restaurant-image {
+  aspect-ratio: 0.88;
+  object-fit: auto;
+  object-position: center;
+  width: 94px;
+}
 
+.restaurant-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 17px 0;
+  gap: 20px; /* Ensures spacing between elements */
+  text-decoration:none;
+}
 
+.restaurant-description-title {
+  letter-spacing: -0.16px;
+  font: 600 16px/150% Inter, -apple-system, Roboto, Helvetica, sans-serif;
+  text-align: left;
+}
 
+.restaurant-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.24px;
+  margin-top: 4px;
+  font: 400 12px Inter, sans-serif;
+  text-align: left;
+  text-decoration:none;
+}
 
+.restaurant-details {
+  display: flex;
+  gap: 20px; /* Ensures spacing between rating and price */
+  text-align: left;
+  text-decoration:none;
+}
 
+.restaurant-rating {
+  letter-spacing: -0.28px;
+  font: 700 14px Inter, sans-serif;
+  text-align: left;
+}
 
+.restaurant-price {
+  letter-spacing: -0.24px;
+  font: 400 12px Inter, sans-serif;
+  text-align: left;
+  text-decoration:none;
+}
 
+/* Styling for Link */
+.restaurant-link {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit text color */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
 
+.restaurant-link:hover {
+  opacity: 0.8; /* Example: Reduce opacity on hover */
+}
 
-
-
-
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:active { text-decoration: none; }

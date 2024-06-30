@@ -4,7 +4,7 @@
   justify-content: space-between;
   padding: 1rem 2rem;
   background-color: #f8f9fa;
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid #0080ff;
   
 }
 
@@ -13,6 +13,7 @@
   align-items: center;
   width: 100%;
   position: relative;
+  border: none;
 }
 
 .header-content .left,
@@ -20,17 +21,23 @@
 .header-content .right {
   display: flex;
   align-items: center;
+  /* position: relative; */
 }
 
 .header-content .left {
   justify-content: flex-start;
+
 }
 
 .header-content .center {
   flex: 1;
   justify-content: center;
+  position: relative;
+  bottom: -28px;
 }
 
 .header-content .right {
   justify-content: flex-end;
+  position: relative;
+  bottom: -20px;
 }

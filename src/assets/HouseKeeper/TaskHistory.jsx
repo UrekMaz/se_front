@@ -1,8 +1,15 @@
+
 import React, { useEffect, useState } from 'react';
 import './StyleTaskHistory.css';
 import TopNavBar from '../Components/TopNavBar';
 import SearchIcon from './search-icon.png';
 import FilterIcon from './filter-icon.png';
+
+// import * as React from 'react';
+// import { useState, useEffect } from 'react';
+// import './StyleTaskHistory.css';
+// import TopNavBar from "../Components/TopNavBar";
+
 
 const TaskItem = ({ roomNumber, taskDescription, taskTime }) => (
   <div className="task-item">
@@ -11,6 +18,7 @@ const TaskItem = ({ roomNumber, taskDescription, taskTime }) => (
     <div className="task-time">{new Date(taskTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
   </div>
 );
+
 
 function TaskHistory({ hamburger }) {
   const [completedTasks, setCompletedTasks] = useState([]);
@@ -22,7 +30,7 @@ function TaskHistory({ hamburger }) {
 
   const fetchCompletedTasks = async () => {
     try {
-      const response = await fetch('http://localhost:3000/completedTasks/completedTasks');
+      const response = await fetch('http://localhost:5000/completedTasks/completedTasks');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -74,5 +82,9 @@ function TaskHistory({ hamburger }) {
   );
 }
 
+
 export default TaskHistory;
+
+
+// export default TaskHistoryManager;
 
