@@ -43,6 +43,12 @@ import ManagerLogin from './assets/Manager/ManagerLogin.jsx';
 
 import Edit_Menu from './assets/master/Menu_edit.jsx';
 
+// Home
+import HotelPage from './assets/Home/HotelPage.jsx';
+import ViewEmployees from './assets/Home/ViewEmployees.jsx';
+import AddHotelRoom from './assets/Home/AddRooms.jsx';
+import AddHousekeepingService from './assets/Home/AddHousekeepingService.jsx';
+
 // <<<<<<< hrishikeshSide
 
 // =======
@@ -94,7 +100,7 @@ function App() {
                 {/* User */}
                 <Route path="/user/dashboard" element={<Dashboard />} />
                 <Route path="/user/in-room-dining/:hotelId/:userId" element={<RestaurantSelect />} />
-                <Route path="/user/orderhistory/:userId" element={<OrderHistory />} />
+                <Route path="/user/orderhistory/:hotelId/:userId" element={<OrderHistory />} />
                 <Route path="/user/in-room-dining/:hotelId/:restoId/:userId" element={<Menu />} />
                 <Route path="/user/orderconfirmation/:hotelId/:restoId/:userId/:orderId" element={<OrderConfirmation />} />
                 <Route path="/user/housekeeping/:hotelId/:userId" element={<Housekeeping />} />
@@ -103,6 +109,16 @@ function App() {
                 <Route path="/restaurant/edit-menu" element={<RestoEditMenu/>} />
                 <Route path="/restaurant/order-history" element={<RestoOrderHistory/>}/>
                 <Route path="/restaurant/restaurant-pending" element={<RestaurantPending/>} />
+
+                {/* Home */}
+                <Route path="/home" element={<HotelPage/>} />
+                <Route path="/view-employees" element={<ViewEmployees/>} />
+                <Route path="/add-rooms" element={<AddHotelRoom/>} />
+                <Route path="/add-housekeeping" element={<AddHousekeepingService/>} />
+                
+
+
+
             </Routes>
         </Router>
     );

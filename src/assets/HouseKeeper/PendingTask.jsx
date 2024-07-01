@@ -38,7 +38,9 @@ function PendingTask({ hamburger }) {
     const fetchTasks = async () => {
       try {
         const hotelId = new URLSearchParams(location.search).get("hotelId");
-        const response = await axios.get(`http://localhost:5000/selected-items/selected-items/${hotelId}?userId=${userId}`);
+        const response = await axios.get(`http://localhost:5000/selected-items/selected-items/${hotelId}?userId=${userId}` ,{
+          params: {hotelId : hotelId},
+        });
         setTasks(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -53,7 +55,14 @@ function PendingTask({ hamburger }) {
     const time_of_completion = new Date().toISOString();
   
     try {
-      const response = await axios.put(`http://localhost:5000/selected-items/selected-items/${updatedTask._id}/complete`, { completed: updatedTask.completed, time_of_completion });
+      const hotelId = new URLSearchParams(location.search).get("hotelId");
+      const response = await axios.put(`http://localhost:5000/selected-items/selected-items/${updatedTask._id}/complete`, 
+        { 
+          completed: updatedTask.completed, time_of_completion
+        }, 
+        {
+          params: {hotelId : hotelId}
+        });
       setTasks(tasks.map(t => t._id === task._id ? response.data : t));
     } catch (error) {
       console.error('Error updating task completion status:', error);

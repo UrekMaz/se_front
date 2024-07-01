@@ -1,14 +1,18 @@
 /* Set the document width and center the content */
 body {
-  width: 375px;
+  /* width: 375px; */
+
   margin: 0 auto;
 }
 
 /* Center the floor-section component */
 .floor-section {
+  
   display: flex;
   flex-direction: column;
   width: 100%; /* Set the maximum width */
+  width: 375px;
+
   margin: 20px auto; /* Center the component horizontally */
   font-size: 14px;
   color: #222;
@@ -19,6 +23,8 @@ body {
 .floor-title {
   letter-spacing: -0.32px;
   width: 100%;
+  width: 375px;
+
   height: 18px;
   text-align: left;
   font: 600 20px/1.1 Inter, sans-serif;

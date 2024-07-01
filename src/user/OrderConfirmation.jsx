@@ -54,7 +54,9 @@ function OrderConfirmation() {
   useEffect(() => {
     async function fetchSelectedItems() {
       try {
-        const response = await axios.get(`http://localhost:5000/user/orderconfirmation/${hotelId}/${restoId}/${userId}/${orderId}`);
+        const response = await axios.get(`http://localhost:5000/user/orderconfirmation/${hotelId}/${restoId}/${userId}/${orderId}`, {
+          params: {hotelId: hotelId},
+        });
         setMenu(response.data.menu); // Set menu state with fetched menu items
         calculateSubtotal(response.data.menu); // Calculate subtotal, GST, and total
       } catch (error) {
@@ -79,7 +81,9 @@ function OrderConfirmation() {
     try {
       console.log('Sending patch request...');
       const response = await axios.patch(`http://localhost:5000/user/orderconfirmation/${orderId}`, {
-        confirmed: true
+        confirmed: true,
+      },{
+        params: {hotelId : hotelId},
       });
       console.log('Patch request successful:', response.data);
       setConfirm(true); 

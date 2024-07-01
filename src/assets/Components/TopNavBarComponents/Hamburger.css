@@ -23,7 +23,7 @@
     right: 16px;
     width: 247px;
     /* position: relative; Ensure the element is positioned relative or absolute */
-    z-index: 9999;
+    /* z-index: 9999; */
 }
 
 ul {

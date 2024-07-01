@@ -39,7 +39,7 @@ function ServiceLink({ text, hotelId, userId }) {
   if (link === 'in-room-dining') {
     link = `in-room-dining/${hotelId}/${userId}`;
   } else if (link === 'order-history') {
-    link = `orderhistory/${userId}`;
+    link = `orderhistory/${hotelId}/${userId}`;
   } else if (link === 'housekeeping') {
     link = `housekeeping/${hotelId}/${userId}`; // Adjusted for housekeeping
   }
@@ -51,7 +51,7 @@ function ServiceLink({ text, hotelId, userId }) {
 }
 
 export default function Dashboard() {
-  const hotelId = "hotel123"; 
+  const hotelId = "7we8c02wo"; 
   const userId = "1234";
   const services = ["Housekeeping", "In-room dining", "Order history"];
   return (

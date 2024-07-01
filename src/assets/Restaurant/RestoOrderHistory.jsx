@@ -30,7 +30,9 @@ function RestoOrderHistory() {
       const hotelId = params.get("hotelId");
 
       try {
-        const response = await axios.get(`http://localhost:5000/restaurant/completed-orders/${hotelId}`);
+        const response = await axios.get(`http://localhost:5000/restaurant/completed-orders/${hotelId}`, {
+          params : {hotelId : hotelId}
+        });
         const fetchedOrders = response.data.map(order => {
           const restroItems = order.restro.map(restroItem => {
             const itemsList = restroItem.menu.starters.concat(restroItem.menu.main, restroItem.menu.dessert);

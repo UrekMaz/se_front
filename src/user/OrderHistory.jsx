@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from 'axios';
 import RHeader1 from "./R1header";
 import "./css/OrderHistory.css";
 import { useParams, useNavigate } from "react-router-dom";
@@ -81,26 +82,24 @@ function OutstandingAmount({ orders }) {
 
 function OrderHistory() {
   const [orders, setOrders] = useState([]);
- 
-  const { userId } = useParams();
+  const { hotelId, userId } = useParams();
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/user/orderhistory/${userId}`);
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log('Fetched orders:', data);
-        setOrders(data);
+        console.log("The current hotelID : " + hotelId);
+        const response = await axios.get(`http://localhost:5000/user/orderhistory/${hotelId}/${userId}`, {
+          params : {hotelId: hotelId}
+        });
+        setOrders(response.data);
+        console.log('Fetched orders:', response.data);
       } catch (error) {
         console.error('Error fetching order history:', error);
       }
     };
 
     fetchOrders();
-  }, [userId]);
+  }, [userId, hotelId]);
 
   // Filter orders where confirmed is true
   const confirmedOrders = orders.filter(order => order.confirmed);

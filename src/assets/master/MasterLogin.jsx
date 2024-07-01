@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../Restaurant/LoginForm.css';
 
@@ -26,18 +26,22 @@ function MasterLogin() {
   const [idNumber, setIdNumber] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const params = new URLSearchParams(location.search);
+    const hotelId = params.get("hotelId");
     try {
       const response = await axios.post('http://localhost:5000/master/login', { // Updated endpoint
-      hotelId:"hotel123",  
+      hotelId: hotelId, 
       userId: idNumber,
         password,
       });
       console.log(response.data);
       if (response.status === 200) {
-        navigate(`/master/home?hotelId=hotel123&userId=${idNumber}`); // Updated navigation route
+        navigate(`/master/home?hotelId=${hotelId}&userId=${idNumber}`); // Updated navigation route
       } else {
         alert(response.data.message);
       }
