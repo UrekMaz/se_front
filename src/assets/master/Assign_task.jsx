@@ -55,11 +55,16 @@ function Assign_task({ hamburger }) {
     const fetchTasksAndAssignees = async () => {
       const params = new URLSearchParams(location.search);
       const hotelId = params.get("hotelId");
+      console.log("Hotedl Id : " + hotelId);
 
       try {
         const [tasksResponse, assigneesResponse] = await Promise.all([
-          axios.get(`http://localhost:5000/selected-items/selected-items/${hotelId}`),
-          axios.get(`http://localhost:5000/hotel-employees/housekeepers/${hotelId}`)
+          axios.get(`http://localhost:5000/selected-items/selected-items/${hotelId}`, {
+            params:{hotelId : hotelId}
+          }),
+          axios.get(`http://localhost:5000/hotel-employees/housekeepers/${hotelId}`, {
+            params: {hotelId : hotelId}
+          })
         ]);
 
         const sortedTasks = tasksResponse.data.sort((a, b) => {
@@ -83,9 +88,26 @@ function Assign_task({ hamburger }) {
     const assigned_to_user_id = e.target.value;
     const assigned_to_name = assignees.find(assignee => assignee.user_id === assigned_to_user_id)?.name || "";
     const time_of_assignment = new Date().toISOString();
+    const params = new URLSearchParams(location.search);
+    const hotelId = params.get("hotelId");
     
     try {
-      const response = await axios.put(`http://localhost:5000/selected-items/selected-items/${task._id}/assign`, { assigned_to: { user_id: assigned_to_user_id, name: assigned_to_name }, time_of_assignment });
+      const response = await axios.put(
+        `http://localhost:5000/selected-items/selected-items/${task._id}/assign`,
+        {
+          assigned_to: {
+            user_id: assigned_to_user_id,
+            name: assigned_to_name
+          },
+          time_of_assignment: time_of_assignment
+        },
+        {
+          params: {
+            hotelId: hotelId
+          }
+        }
+      );
+      
       setTasks(tasks.map(t => t._id === task._id ? response.data : t));
     } catch (error) {
       console.error('Error updating task assignment:', error);
@@ -95,9 +117,14 @@ function Assign_task({ hamburger }) {
   const handleCheckboxChange = async (task) => {
     const updatedTask = { ...task, completed: !task.completed };
     const time_of_completion = new Date().toISOString();
+    const params = new URLSearchParams(location.search);
+    const hotelId = params.get("hotelId");
   
     try {
-      const response = await axios.put(`http://localhost:5000/selected-items/selected-items/${updatedTask._id}/complete`, { completed: updatedTask.completed, time_of_completion });
+      const response = await axios.put(`http://localhost:5000/selected-items/selected-items/${updatedTask._id}/complete`, { 
+      completed: updatedTask.completed, time_of_completion },
+      {params: {hotelId:hotelId}}
+      );
       setTasks(tasks.map(t => t._id === task._id ? response.data : t));
     } catch (error) {
       console.error('Error updating task completion status:', error);

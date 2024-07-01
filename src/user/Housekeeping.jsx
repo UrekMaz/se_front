@@ -80,7 +80,9 @@ function Housekeeping() {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/user/housekeeping/${hotelId}/${userId}`);
+        const response = await axios.get(`http://localhost:5000/user/housekeeping/${hotelId}/${userId}`, {
+          params:{hotelId : hotelId}
+        });
         setServices(response.data);
       } catch (error) {
         console.error('Error fetching housekeeping services:', error);
@@ -121,7 +123,9 @@ setP(true);
     try {
       console.log("Items being submitted:", selectedItems); // Debugging line to check items before submission
       const payload = { items: selectedItems };
-      const response = await axios.post(`http://localhost:5000/user/housekeeping/${hotelId}/${userId}`, payload);
+      const response = await axios.post(`http://localhost:5000/user/housekeeping/${hotelId}/${userId}`, payload, {
+        params:{hotelId : hotelId}
+      });
       console.log('Order submitted successfully:', response.data);
       navigate("/user/dashboard")
      

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../Restaurant/LoginForm.css';
 
@@ -25,10 +25,13 @@ function LabelInputRow({ label, inputType, inputId, placeholder, value, onChange
 function ManagerLogin() {
   const [idNumber, setIdNumber] = useState('');
   const [password, setPassword] = useState('');
+  const location = useLocation();
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const params = new URLSearchParams(location.search);
+    const hotelId = params.get("hotelId");
     try {
 
 //       const response = await axios.post('http://localhost:3000/manager/login', { // Updated endpoint
@@ -36,14 +39,14 @@ function ManagerLogin() {
 //       userId: idNumber,
 
       const response = await axios.post('http://localhost:5000/manager/login', {
-        hotelId: 'hotel123',
+        hotelId: hotelId,
         userId: idNumber,
 
         password,
       });
-      console.log(response.data);
+      console.log("The response received is " + response.data);
       if (response.status === 200) {
-        navigate(`/manager/pending-tasks?hotelId=hotel123&userId=${idNumber}`); // Update URL without userId parameter
+        navigate(`/manager/pending-tasks?hotelId=${hotelId}&userId=${idNumber}`); // Update URL without userId parameter
       } else {
         alert(response.data.message);
       }
