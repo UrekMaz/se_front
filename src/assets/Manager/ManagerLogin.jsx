@@ -38,7 +38,7 @@ function ManagerLogin() {
 //       hotelId:"hotel123",  
 //       userId: idNumber,
 
-      const response = await axios.post('http://localhost:5000/manager/login', {
+      const response = await axios.post('http://localhost:3000/manager/login', {
         hotelId: hotelId,
         userId: idNumber,
 

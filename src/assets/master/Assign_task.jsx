@@ -59,10 +59,10 @@ function Assign_task({ hamburger }) {
 
       try {
         const [tasksResponse, assigneesResponse] = await Promise.all([
-          axios.get(`http://localhost:5000/selected-items/selected-items/${hotelId}`, {
+          axios.get(`http://localhost:3000/selected-items/selected-items/${hotelId}`, {
             params:{hotelId : hotelId}
           }),
-          axios.get(`http://localhost:5000/hotel-employees/housekeepers/${hotelId}`, {
+          axios.get(`http://localhost:3000/hotel-employees/housekeepers/${hotelId}`, {
             params: {hotelId : hotelId}
           })
         ]);
@@ -93,7 +93,7 @@ function Assign_task({ hamburger }) {
     
     try {
       const response = await axios.put(
-        `http://localhost:5000/selected-items/selected-items/${task._id}/assign`,
+        `http://localhost:3000/selected-items/selected-items/${task._id}/assign`,
         {
           assigned_to: {
             user_id: assigned_to_user_id,
@@ -121,7 +121,7 @@ function Assign_task({ hamburger }) {
     const hotelId = params.get("hotelId");
   
     try {
-      const response = await axios.put(`http://localhost:5000/selected-items/selected-items/${updatedTask._id}/complete`, { 
+      const response = await axios.put(`http://localhost:3000/selected-items/selected-items/${updatedTask._id}/complete`, { 
       completed: updatedTask.completed, time_of_completion },
       {params: {hotelId:hotelId}}
       );

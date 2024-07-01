@@ -75,7 +75,7 @@ function Login({ message }) {
 
   const handleSubmit = async (idNumber, password) => {
     try {
-      const response = await fetch('http://localhost:5000/manager/login', {
+      const response = await fetch('http://localhost:3000/manager/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

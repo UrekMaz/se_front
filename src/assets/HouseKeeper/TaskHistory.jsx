@@ -30,7 +30,7 @@ function TaskHistory({ hamburger }) {
 
   const fetchCompletedTasks = async () => {
     try {
-      const response = await fetch('http://localhost:5000/completedTasks/completedTasks');
+      const response = await fetch('http://localhost:3000/completedTasks/completedTasks');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

@@ -17,7 +17,7 @@ const AddEmployeeForm = ({ hotels, fetchHotels, setError }) => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/hoteldatabase/employees/add', {
+      const response = await axios.post('http://localhost:3000/hoteldatabase/employees/add', {
         hotelId: selectedHotelId,
         employeeType,
         employeeDetails: {

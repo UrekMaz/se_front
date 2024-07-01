@@ -38,7 +38,7 @@ function PendingTask({ hamburger }) {
     const fetchTasks = async () => {
       try {
         const hotelId = new URLSearchParams(location.search).get("hotelId");
-        const response = await axios.get(`http://localhost:5000/selected-items/selected-items/${hotelId}?userId=${userId}` ,{
+        const response = await axios.get(`http://localhost:3000/selected-items/selected-items/${hotelId}?userId=${userId}` ,{
           params: {hotelId : hotelId},
         });
         setTasks(response.data);
@@ -56,7 +56,7 @@ function PendingTask({ hamburger }) {
   
     try {
       const hotelId = new URLSearchParams(location.search).get("hotelId");
-      const response = await axios.put(`http://localhost:5000/selected-items/selected-items/${updatedTask._id}/complete`, 
+      const response = await axios.put(`http://localhost:3000/selected-items/selected-items/${updatedTask._id}/complete`, 
         { 
           completed: updatedTask.completed, time_of_completion
         }, 

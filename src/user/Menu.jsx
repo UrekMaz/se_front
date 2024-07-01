@@ -85,7 +85,7 @@ function MenuSide() {
   useEffect(() => {
     async function fetchMenuData() {
       try {
-        const response = await axios.get(`http://localhost:5000/user/in-room-dining/${hotelId}/${restoId}/${userId}`, {
+        const response = await axios.get(`http://localhost:3000/user/in-room-dining/${hotelId}/${restoId}/${userId}`, {
           params: { hotelId: hotelId },
         });
         const { name, menu, description, rating } = response.data;
@@ -121,7 +121,7 @@ function MenuSide() {
     if(p){
     try {
       const response = await axios.post(
-        `http://localhost:5000/user/in-room-dining/${hotelId}/${restoId}/${userId}`,
+        `http://localhost:3000/user/in-room-dining/${hotelId}/${restoId}/${userId}`,
         { selectedItems }, { params: { hotelId: hotelId },}
       );
       console.log("Order placed successfully:", response.data);

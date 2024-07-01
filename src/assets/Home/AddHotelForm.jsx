@@ -13,7 +13,7 @@ const AddHotelForm = ({ fetchHotels, setError }) => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/hoteldatabase/add', {
+      const response = await axios.post('http://localhost:3000/hoteldatabase/add', {
         hotelName,
       });
       setHotelName('');

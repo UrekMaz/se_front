@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import {useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import './StyleTaskHistory.css';
 import TopNavBar from "../Components/TopNavBar";
+import axios from 'axios';
 
 const TaskItem = ({ roomNumber, taskDescription, taskTime }) => (
   <div className="task-item">
@@ -13,17 +15,29 @@ const TaskItem = ({ roomNumber, taskDescription, taskTime }) => (
 
 function TaskHistoryManager() {
   const [tasks, setTasks] = useState([]);
+  const [error, setError] = useState(null);
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const hotelId = params.get("hotelId");
 
   useEffect(() => {
     const fetchTasks = async () => {
-      const hotelId = 'hotel123'; // Replace with actual hotel ID logic
-      const response = await fetch(`http://localhost:5000/hotel-tasks/${hotelId}/completed-tasks`);
-      const data = await response.json();
-      setTasks(data);
+      try {
+        const response = await axios.get(`http://localhost:3000/hotel-tasks/${hotelId}/completed-tasks`, {
+          params : {hotelId : hotelId}
+        });
+        setTasks(response.data);
+      } catch (error) {
+        setError(error);
+      }
     };
 
     fetchTasks();
-  }, []);
+  }, [hotelId]);
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <section className="task-history">

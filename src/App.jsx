@@ -103,9 +103,7 @@ function App() {
                 <Route path="/manager/login" element={<ManagerLogin/>} />
                 <Route path="/manager/rooms" element={<Rooms hamburger = "manager"/>} />
                 <Route path="/manager/task-detail" element={<TaskDetailManager hamburger = "manager"/>} />
-                <Route path="/manager/task-history" element={<TaskHistory hamburger = "manager"/>} />
-
-//                 <Route path="/manager/pending-tasks" element={<PendingTask hamburger = "manager" />} />
+                <Route path="/manager/task-history" element={<TaskHistoryManager hamburger = "manager"/>} />
                 <Route path="/billingManager" element={<BillingManager />} />
 
                 <Route path="/manager/pending-tasks" element={<PendingTaskAssign hamburger = "manager" />} />

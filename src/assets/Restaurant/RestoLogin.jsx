@@ -34,7 +34,7 @@ function RestoLogin() {
     const hotelId = params.get("hotelId");
     try {
 
-      const response = await axios.post('http://localhost:5000/restaurant/login', { // Updated endpoint
+      const response = await axios.post('http://localhost:3000/restaurant/login', { // Updated endpoint
       hotelId: hotelId,  
 
       userId: idNumber,

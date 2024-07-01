@@ -38,7 +38,7 @@ function RestaurantSelect() {
   useEffect(() => {
     async function fetchRestaurantData() {
       try {
-        const response = await axios.get(`http://localhost:5000/user/in-room-dining/${hotelId}/${userId}`, {
+        const response = await axios.get(`http://localhost:3000/user/in-room-dining/${hotelId}/${userId}`, {
           params: { hotelId: hotelId },
         });
         

@@ -6,14 +6,16 @@ import TopNavBar from "../Components/TopNavBar";
 
 function Task({ task, assignees, onAssignChange, onCheckboxChange, onTextClick }) {
   // Function to extract time from the datetime string
-  const formatTime = (dateTime) => {
-    const date = new Date(dateTime);
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const formatTime = (timeString) => {
+    const [hours, minutes, seconds] = timeString.split(':');
+    const date = new Date();
+    date.setHours(hours, minutes, seconds);
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
   };
 
   return (
     <div className="task-container" onClick={() => onTextClick(task)}>
-      <div className="task-time">{task.time_of_order}</div>
+      <div className="task-time">{formatTime(task.time_of_order)}</div>
       <div className="task-content">
         <div className="task-number">
           <strong>{task.roomId}<br /><br/>
@@ -53,21 +55,23 @@ function PendingTaskAssign({ hamburger }) {
     const fetchTasksAndAssignees = async () => {
       const params = new URLSearchParams(location.search);
       const hotelId = params.get("hotelId");
+      console.log("Hotedl Id : " + hotelId);
 
       try {
         const [tasksResponse, assigneesResponse] = await Promise.all([
-          axios.get(`http://localhost:5000/selected-items/selected-items/${hotelId}`,
-            {params : {hotelId : hotelId}}
-          ),
-          axios.get(`http://localhost:5000/hotel-employees/housekeepers/${hotelId}`, 
-            {params : {hotelId : hotelId}})
+          axios.get(`http://localhost:3000/selected-items/selected-items/${hotelId}`, {
+            params:{hotelId : hotelId}
+          }),
+          axios.get(`http://localhost:3000/hotel-employees/housekeepers/${hotelId}`, {
+            params: {hotelId : hotelId}
+          })
         ]);
 
         const sortedTasks = tasksResponse.data.sort((a, b) => {
           // Sort by not allotted first and then by time (newest first)
           if (!a.assigned_to?.user_id && b.assigned_to?.user_id) return -1;
           if (a.assigned_to?.user_id && !b.assigned_to?.user_id) return 1;
-          return new Date(b.time_of_order) - new Date(a.time_of_order);
+          return new Date(`1970-01-01T${b.time_of_order}Z`) - new Date(`1970-01-01T${a.time_of_order}Z`);
         });
 
         setTasks(sortedTasks);
@@ -86,10 +90,24 @@ function PendingTaskAssign({ hamburger }) {
     const time_of_assignment = new Date().toISOString();
     const params = new URLSearchParams(location.search);
     const hotelId = params.get("hotelId");
+    
     try {
-      const response = await axios.put(`http://localhost:5000/selected-items/selected-items/${task._id}/assign`, 
-        { assigned_to: { user_id: assigned_to_user_id, name: assigned_to_name }, time_of_assignment }, 
-        {params :{hotelId : hotelId}});
+      const response = await axios.put(
+        `http://localhost:3000/selected-items/selected-items/${task._id}/assign`,
+        {
+          assigned_to: {
+            user_id: assigned_to_user_id,
+            name: assigned_to_name
+          },
+          time_of_assignment: time_of_assignment
+        },
+        {
+          params: {
+            hotelId: hotelId
+          }
+        }
+      );
+      
       setTasks(tasks.map(t => t._id === task._id ? response.data : t));
     } catch (error) {
       console.error('Error updating task assignment:', error);
@@ -103,10 +121,10 @@ function PendingTaskAssign({ hamburger }) {
     const hotelId = params.get("hotelId");
   
     try {
-      const response = await axios.put(`http://localhost:5000/selected-items/selected-items/${updatedTask._id}/complete`, 
-        { completed: updatedTask.completed, time_of_completion }, {
-          params: {hotelId:hotelId}
-        });
+      const response = await axios.put(`http://localhost:3000/selected-items/selected-items/${updatedTask._id}/complete`, { 
+      completed: updatedTask.completed, time_of_completion },
+      {params: {hotelId:hotelId}}
+      );
       setTasks(tasks.map(t => t._id === task._id ? response.data : t));
     } catch (error) {
       console.error('Error updating task completion status:', error);
@@ -120,7 +138,7 @@ function PendingTaskAssign({ hamburger }) {
 
   return (
     <div className="main-container">
-      <TopNavBar name="Pending tasks" hamburger={hamburger} />
+      <TopNavBar name="Assign tasks" hamburger= "manager" />
       <section className="tasks-section">
         {tasks.map((task, index) => (
           <Task

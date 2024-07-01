@@ -20,7 +20,7 @@ const HotelPage = () => {
 
   const fetchHotels = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/hoteldatabase/get');
+      const response = await axios.get('http://localhost:3000/hoteldatabase/get');
       setHotels(response.data);
     } catch (error) {
       setError('Error fetching hotels');
@@ -35,7 +35,7 @@ const HotelPage = () => {
     }
 
     try {
-      await axios.post('http://localhost:5000/hoteldatabase/add', { hotelName });
+      await axios.post('http://localhost:3000/hoteldatabase/add', { hotelName });
       setHotelName('');
       fetchHotels();
     } catch (error) {
@@ -51,7 +51,7 @@ const HotelPage = () => {
     }
 
     try {
-      await axios.post('http://localhost:5000/hoteldatabase/employees/add', {
+      await axios.post('http://localhost:3000/hoteldatabase/employees/add', {
         hotelId: selectedHotelId,
         employeeType,
         employeeDetails: {

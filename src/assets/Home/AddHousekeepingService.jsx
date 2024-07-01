@@ -21,7 +21,7 @@ const AddHousekeepingService = () => {
 
   const fetchHotels = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/hoteldatabase/get');
+      const response = await axios.get('http://localhost:3000/hoteldatabase/get');
       setHotels(response.data);
     } catch (error) {
       setError('Error fetching hotels');
@@ -44,7 +44,7 @@ const AddHousekeepingService = () => {
     formData.append('altText', altText);
     console.log(formData);
     try {
-      await axios.post('http://localhost:5000/hoteldatabase/housekeeping-services/add',{
+      await axios.post('http://localhost:3000/hoteldatabase/housekeeping-services/add',{
         params : {hotelId : selectedHotelId}
       }, formData, {
         headers: {

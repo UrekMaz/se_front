@@ -18,7 +18,7 @@ const ViewEmployees = () => {
 
   const fetchHotels = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/hoteldatabase/get');
+      const response = await axios.get('http://localhost:3000/hoteldatabase/get');
       setHotels(response.data);
     } catch (error) {
       setError('Error fetching hotels');
@@ -32,7 +32,7 @@ const ViewEmployees = () => {
     }
 
     try {
-      const response = await axios.get(`http://localhost:5000/hoteldatabase/employees/${selectedHotelId}`, {
+      const response = await axios.get(`http://localhost:3000/hoteldatabase/employees/${selectedHotelId}`, {
         params: { hotelId: selectedHotelId },
       });
       setEmployees(response.data);

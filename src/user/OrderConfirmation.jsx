@@ -54,7 +54,7 @@ function OrderConfirmation() {
   useEffect(() => {
     async function fetchSelectedItems() {
       try {
-        const response = await axios.get(`http://localhost:5000/user/orderconfirmation/${hotelId}/${restoId}/${userId}/${orderId}`, {
+        const response = await axios.get(`http://localhost:3000/user/orderconfirmation/${hotelId}/${restoId}/${userId}/${orderId}`, {
           params: {hotelId: hotelId},
         });
         setMenu(response.data.menu); // Set menu state with fetched menu items
@@ -80,7 +80,7 @@ function OrderConfirmation() {
   async function confirmed() {
     try {
       console.log('Sending patch request...');
-      const response = await axios.patch(`http://localhost:5000/user/orderconfirmation/${orderId}`, {
+      const response = await axios.patch(`http://localhost:3000/user/orderconfirmation/${orderId}`, {
         confirmed: true,
       },{
         params: {hotelId : hotelId},

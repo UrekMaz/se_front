@@ -71,7 +71,7 @@ export default function RestaurantPending() {
       console.log("The hotel Id is : " + hotelId);
 
       try {
-        const response = await axios.get(`http://localhost:5000/restaurant/pending-orders/${hotelId}`, {
+        const response = await axios.get(`http://localhost:3000/restaurant/pending-orders/${hotelId}`, {
           params : {hotelId : hotelId}
         });
         const ordersWithValidDate = response.data.map(order => ({
@@ -93,7 +93,7 @@ export default function RestaurantPending() {
     const hotelId = params.get("hotelId");
 
     try {
-      const response = await axios.put(`http://localhost:5000/restaurant/pending-orders/${order._id}/complete`, 
+      const response = await axios.put(`http://localhost:3000/restaurant/pending-orders/${order._id}/complete`, 
         { completed: updatedOrder.completed, time_of_completion: updatedOrder.time_of_completion },
         { params: { hotelId: hotelId } }
       );

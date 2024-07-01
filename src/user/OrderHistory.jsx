@@ -88,7 +88,7 @@ function OrderHistory() {
     const fetchOrders = async () => {
       try {
         console.log("The current hotelID : " + hotelId);
-        const response = await axios.get(`http://localhost:5000/user/orderhistory/${hotelId}/${userId}`, {
+        const response = await axios.get(`http://localhost:3000/user/orderhistory/${hotelId}/${userId}`, {
           params : {hotelId: hotelId}
         });
         setOrders(response.data);
