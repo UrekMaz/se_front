@@ -1,50 +1,90 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
+
+import React, { useEffect, useState } from 'react';
 import './StyleTaskHistory.css';
-import TopNavBar from "../Components/TopNavBar";
+import TopNavBar from '../Components/TopNavBar';
+import SearchIcon from './search-icon.png';
+import FilterIcon from './filter-icon.png';
+
+// import * as React from 'react';
+// import { useState, useEffect } from 'react';
+// import './StyleTaskHistory.css';
+// import TopNavBar from "../Components/TopNavBar";
+
 
 const TaskItem = ({ roomNumber, taskDescription, taskTime }) => (
   <div className="task-item">
     <div className="room-number">{roomNumber}</div>
     <div className="task-description">{taskDescription}</div>
-    <div className="task-time">{taskTime}</div>
+    <div className="task-time">{new Date(taskTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
   </div>
 );
 
-function TaskHistoryManager() {
-  const [tasks, setTasks] = useState([]);
+
+function TaskHistory({ hamburger }) {
+  const [completedTasks, setCompletedTasks] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchTasks = async () => {
-      const hotelId = 'hotel123'; // Replace with actual hotel ID logic
-      const response = await fetch(`http://localhost:5000/hotel-tasks/${hotelId}/completed-tasks`);
-      const data = await response.json();
-      setTasks(data);
-    };
-
-    fetchTasks();
+    fetchCompletedTasks();
   }, []);
+
+  const fetchCompletedTasks = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/completedTasks/completedTasks');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        const data = await response.json();
+        setCompletedTasks(data);
+      } else {
+        throw new Error('Response was not in JSON format');
+      }
+    } catch (error) {
+      console.error('Error fetching completed tasks:', error);
+      setError(error.message || 'Error fetching completed tasks');
+    }
+  };
 
   return (
     <section className="task-history">
-      <TopNavBar name="Task History" hamburger="manager"/>
+      <TopNavBar name="Task history" hamburger={hamburger} />
       <div className="search-container">
         <div className="search-bar">
-          <input type="text" className="search-input" aria-label="Search" placeholder="Search" />
+          <img src={SearchIcon} alt="Search" className="search-icon" />
+          <input type="text" placeholder="Search" className="search-input" />
+          <img src={FilterIcon} alt="Filter" className="filter-icon" />
         </div>
       </div>
-      <main className="task-list">
-        <header className="tasks-header">
-          <div className="column-title">Room</div>
-          <div className="column-title">Task</div>
-          <div className="column-title">Time</div>
-        </header>
-        {tasks.map((task, index) => (
-          <TaskItem key={index} roomNumber={task.room_no} taskDescription={task.requirement} taskTime={new Date(task.time_of_completion).toLocaleTimeString()} />
-        ))}
-      </main>
+      {error ? (
+        <div className="error-message">{error}</div>
+      ) : (
+        <div className="task-list">
+          <div className="task-header">
+            <div className="header-room">Room</div>
+            <div className="header-task">Task</div>
+            <div className="header-time">Time</div>
+          </div>
+          {completedTasks.map((task, index) => (
+            task.items.map((item, itemIndex) => (
+              <TaskItem 
+                key={`${index}-${itemIndex}`} 
+                roomNumber={task.roomId} 
+                taskDescription={item.serviceName} 
+                taskTime={task.time_of_assignment} 
+              />
+            ))
+          ))}
+        </div>
+      )}
     </section>
   );
 }
 
-export default TaskHistoryManager;
+
+export default TaskHistory;
+
+
+// export default TaskHistoryManager;
+

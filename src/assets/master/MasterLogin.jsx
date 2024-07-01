@@ -36,6 +36,7 @@ function MasterLogin() {
     try {
       const response = await axios.post('http://localhost:5000/master/login', { // Updated endpoint
       hotelId: hotelId, 
+
       userId: idNumber,
         password,
       });

@@ -12,16 +12,25 @@ import Login from "./assets/HouseKeeper/login.jsx";
 import Rooms from './assets/Manager/Rooms.jsx';
 import TaskDetailManager from './assets/Manager/TaskDetail.jsx';
 import TaskHistoryManager from './assets/Manager/TaskHistory.jsx';
+
+// import PendingTaskManager from './assets/Manager/PendingTask.jsx';
+import BillingManager from './assets/Manager/billingManager.jsx';
+
 import PendingTaskAssign from './assets/Manager/PendingTaskAssign.jsx';
+
 
 // Master
 import Home from './assets/master/Home.jsx';
 import RestoPending from './assets/master/RestoPending.jsx';
 import Billing from './assets/master/billing.jsx';
+
+import RoomsT from './assets/master/Rooms.jsx'
+
 import Assign_task from './assets/master/Assign_task.jsx';
 import InRoomDining from './assets/master/InRoomDining.jsx';
 import HousekeeperLogin from './assets/HouseKeeper/Housekeeperlogin.jsx';
 import MasterLogin from './assets/master/MasterLogin.jsx';
+
 
 // User
 import Dashboard from './user/Dashboard2';
@@ -88,14 +97,19 @@ function App() {
                 <Route path="/edit-menu" element={<Edit_Menu/>} />
                 <Route path="/task-assign" element={<Assign_task hamburger = "master"/>} />
                 <Route path="/in-room-dining-history" element={<InRoomDining/>} />
-
+                <Route path="/roomsMaster" element={<RoomsT/>} />
 
                 {/* Manager */}
                 <Route path="/manager/login" element={<ManagerLogin/>} />
                 <Route path="/manager/rooms" element={<Rooms hamburger = "manager"/>} />
                 <Route path="/manager/task-detail" element={<TaskDetailManager hamburger = "manager"/>} />
                 <Route path="/manager/task-history" element={<TaskHistory hamburger = "manager"/>} />
+
+//                 <Route path="/manager/pending-tasks" element={<PendingTask hamburger = "manager" />} />
+                <Route path="/billingManager" element={<BillingManager />} />
+
                 <Route path="/manager/pending-tasks" element={<PendingTaskAssign hamburger = "manager" />} />
+
 
                 {/* User */}
                 <Route path="/user/dashboard" element={<Dashboard />} />

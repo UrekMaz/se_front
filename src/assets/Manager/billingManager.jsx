@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import "./billing.css";
 
-function Billing() {
+function BillingManager() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const roomNumber = queryParams.get('room'); // Get room number from URL query parameter
@@ -14,7 +14,7 @@ function Billing() {
   useEffect(() => {
     if (roomNumber) {
       // Fetch billing data for the specified room number
-      fetch(`http://localhost:3000/billing/${roomNumber}`)
+      fetch(`http://localhost:3000/billingManager/${roomNumber}`)
         .then((response) => {
           if (!response.ok) {
             return response.json().then(err => {
@@ -48,22 +48,22 @@ function Billing() {
         /* Your styles here */
       `}</style>
       <section className="container">
-        <TopNavBar name={`Billing for ${roomNumber}`} hamburger="master" />
+        <TopNavBar name={`Billing for ${roomNumber}`} hamburger="manager" />
         <section className="content">
           <div className="total-section">
             <div className="total-label">Total outstanding</div>
-            <div className="total-amount">₹{billingData.orders.reduce((total, order) => total + order.cost, 0)}</div>
+            <div className="total-amount">₹{billingData.items.reduce((total, item) => total + (item.price * item.quantity), 0)}</div>
           </div>
           <div className="print-container">
             <button className="print-button">Print all</button>
           </div>
           <section className="billing-info">
-            {billingData.orders.map((order, index) => (
+            {billingData.items.map((item, index) => (
               <div key={index} className="billing-card">
                 <div className="billing-item">
                   <div className="item-row">
-                    <div className="item-name">{order.description}</div>
-                    <div className="item-price">₹{order.cost}</div>
+                    <div className="item-name">{item.serviceName}</div>
+                    <div className="item-price">₹{item.price * item.quantity}</div>
                   </div>
                 </div>
               </div>
@@ -75,4 +75,4 @@ function Billing() {
   );
 }
 
-export default Billing;
+export default BillingManager;

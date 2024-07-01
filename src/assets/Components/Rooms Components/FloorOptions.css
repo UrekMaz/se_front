@@ -1,5 +1,6 @@
 .status-container {
   overflow-x: auto;
+  white-space: nowrap; /* Prevent wrapping */
   display: flex;
   gap: 6px;
   font-size: 14px;
@@ -11,6 +12,14 @@
   width: 375px;
 }
 
+/* Optional: Adjust the height of the container if needed */
+.status-container {
+  max-height: 120px; /* Adjust the height as per your design */
+  overflow-y: hidden; /* Hide vertical overflow */
+}
+.status-container::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar */
+}
 .status-button {
   display: flex;
   align-items: center;
