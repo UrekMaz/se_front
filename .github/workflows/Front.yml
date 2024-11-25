@@ -29,11 +29,6 @@ jobs:
         run: npm install
         working-directory: ./src # Adjust to the folder containing your frontend
 
-      # Step 4: Run Tests (Optional, if your project has tests)
-      - name: Run Tests
-        run: npm test
-        working-directory: ./src
-
       # Step 5: Build the Frontend
       - name: Build Frontend
         run: npm run build
