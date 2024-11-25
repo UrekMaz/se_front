@@ -1,0 +1,48 @@
+name: Frontend CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy Frontend
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout Code
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set Up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # Use the appropriate Node.js version for your project
+
+      # Step 3: Install Dependencies
+      - name: Install Dependencies
+        run: npm install
+        working-directory: ./src # Adjust to the folder containing your frontend
+
+      # Step 4: Run Tests (Optional, if your project has tests)
+      - name: Run Tests
+        run: npm test
+        working-directory: ./src
+
+      # Step 5: Build the Frontend
+      - name: Build Frontend
+        run: npm run build
+        working-directory: ./src
+
+      # Step 6: Deploy (Optional, customize as per your hosting platform)
+      - name: Deploy Frontend
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }} # Add necessary secrets for deployment
+        run: |
+          echo "Deployment commands here"
+          # Example: Upload files to a hosting platform
